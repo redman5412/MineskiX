@@ -5,196 +5,84 @@
   },
   "players": [
     {
-      "first": "Jesper",
-      "last": "Tjäder",
-      "country": "ph",
-      "photo": ""
+      "first": "Univ League",
+      "last": "Winner 1",
+      "country": "ph"
     },
     {
-      "first": "Matěj",
-      "last": "Švancer",
-      "country": "al",
-      "photo": ""
+      "first": "Univ League",
+      "last": "Winner 2",
+      "country": "ph"
     },
     {
-      "first": "Joel",
-      "last": "Magnusson",
-      "country": "at",
-      "photo": ""
+      "first": "Univ League",
+      "last": "Winner 3",
+      "country": "ph"
     },
     {
-      "first": "Colby",
-      "last": "Stevenson",
-      "country": "dk",
-      "photo": ""
+      "first": "Univ League",
+      "last": "Winner 4",
+      "country": "ph"
     },
     {
-      "first": "Mika",
-      "last": "Berg",
-      "country": "hr",
-      "photo": ""
+      "first": "Univ League",
+      "last": "Winner 5",
+      "country": "ph"
     },
     {
-      "first": "Luca",
-      "last": "Rossi",
-      "country": "cz",
-      "photo": ""
+      "first": "Univ League",
+      "last": "Winner 6",
+      "country": "ph"
     },
     {
-      "first": "Noah",
-      "last": "Novak",
-      "country": "es",
-      "photo": ""
+      "first": "Univ League",
+      "last": "Winner 7",
+      "country": "ph"
     },
     {
-      "first": "Ivan",
-      "last": "Petrov",
-      "country": "se",
-      "photo": ""
+      "first": "Univ League",
+      "last": "Winner 8",
+      "country": "ph"
     },
     {
-      "first": "Leo",
-      "last": "Silva",
-      "country": "no",
-      "photo": ""
+      "first": "Open League",
+      "last": "Winner 1",
+      "country": "ph"
     },
     {
-      "first": "Aksel",
-      "last": "Hansen",
-      "country": "fi",
-      "photo": ""
+      "first": "Open League",
+      "last": "Winner 2",
+      "country": "ph"
     },
     {
-      "first": "Dani",
-      "last": "Marin",
-      "country": "bg",
-      "photo": ""
+      "first": "Open League",
+      "last": "Winner 3",
+      "country": "ph"
     },
     {
-      "first": "Oskar",
-      "last": "Lund",
-      "country": "br",
-      "photo": ""
+      "first": "Open League",
+      "last": "Winner 4",
+      "country": "ph"
     },
     {
-      "first": "Tomas",
-      "last": "Kral",
-      "country": "it",
-      "photo": ""
+      "first": "Open League",
+      "last": "Winner 5",
+      "country": "ph"
     },
     {
-      "first": "Emil",
-      "last": "Dahl",
-      "country": "ca",
-      "photo": ""
+      "first": "Open League",
+      "last": "Winner 6",
+      "country": "ph"
     },
     {
-      "first": "Ravi",
-      "last": "Patel",
-      "country": "cm",
-      "photo": ""
+      "first": "Open League",
+      "last": "Winner 7",
+      "country": "ph"
     },
     {
-      "first": "Sami",
-      "last": "Aho",
-      "country": "is",
-      "photo": ""
-    },
-    {
-      "first": "Jesper",
-      "last": "Tjäder 1",
-      "country": "af",
-      "photo": ""
-    },
-    {
-      "first": "Matěj",
-      "last": "Švancer 2",
-      "country": "al",
-      "photo": ""
-    },
-    {
-      "first": "Joel",
-      "last": "Magnusson 3",
-      "country": "at",
-      "photo": ""
-    },
-    {
-      "first": "Colby",
-      "last": "Stevenson 4",
-      "country": "dk",
-      "photo": ""
-    },
-    {
-      "first": "Mika",
-      "last": "Berg 5",
-      "country": "hr",
-      "photo": ""
-    },
-    {
-      "first": "Luca",
-      "last": "Rossi 6",
-      "country": "cz",
-      "photo": ""
-    },
-    {
-      "first": "Noah",
-      "last": "Novak 7",
-      "country": "es",
-      "photo": ""
-    },
-    {
-      "first": "Ivan",
-      "last": "Petrov 8",
-      "country": "se",
-      "photo": ""
-    },
-    {
-      "first": "Leo",
-      "last": "Silva 9",
-      "country": "no",
-      "photo": ""
-    },
-    {
-      "first": "Aksel",
-      "last": "Hansen 10",
-      "country": "fi",
-      "photo": ""
-    },
-    {
-      "first": "Dani",
-      "last": "Marin 11",
-      "country": "bg",
-      "photo": ""
-    },
-    {
-      "first": "Oskar",
-      "last": "Lund 12",
-      "country": "br",
-      "photo": ""
-    },
-    {
-      "first": "Tomas",
-      "last": "Kral 13",
-      "country": "it",
-      "photo": ""
-    },
-    {
-      "first": "Emil",
-      "last": "Dahl 14",
-      "country": "ca",
-      "photo": ""
-    },
-    {
-      "first": "Ravi",
-      "last": "Patel 15",
-      "country": "cm",
-      "photo": ""
-    },
-    {
-      "first": "Sami",
-      "last": "Aho 16",
-      "country": "is",
-      "photo": ""
+      "first": "Open League",
+      "last": "Winner 8",
+      "country": "ph"
     }
   ],
   "countdown": {
@@ -296,78 +184,59 @@
     3
   ],
   "bracket": {
-    "r32": [
-      0,
-      1,
-      2,
-      3,
-      4,
-      5,
-      6,
-      7,
-      8,
-      9,
-      10,
-      11,
-      12,
-      13,
-      14,
-      15,
-      16,
-      17,
-      18,
-      19,
-      20,
-      21,
-      22,
-      23,
-      24,
-      25,
-      26,
-      27,
-      28,
-      29,
-      30,
-      31
-    ],
-    "r16": [
-      -1,
-      -1,
-      -1,
-      -1,
-      -1,
-      -1,
-      -1,
-      -1,
-      -1,
-      -1,
-      -1,
-      -1,
-      -1,
-      -1,
-      -1,
-      -1
-    ],
-    "r8": [
-      -1,
-      -1,
-      -1,
-      -1,
-      -1,
-      -1,
-      -1,
-      -1
-    ],
-    "r4": [
-      -1,
-      -1,
-      -1,
-      -1
-    ],
-    "f": [
-      -1,
-      -1
-    ]
+    "uniLabel": "UNIV LEAGUE WINNER",
+    "openLabel": "OPEN LEAGUE WINNER",
+    "uni": {
+      "r16": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7
+      ],
+      "qf": [
+        0,
+        2,
+        4,
+        6
+      ],
+      "sf": [
+        0,
+        1
+      ],
+      "f": [
+        0
+      ]
+    },
+    "open": {
+      "r16": [
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15
+      ],
+      "qf": [
+        8,
+        10,
+        12,
+        14
+      ],
+      "sf": [
+        8,
+        14
+      ],
+      "f": [
+        8
+      ]
+    },
+    "winner": -1
   },
   "leaderboard": {
     "title": "LEADERBOARD",
@@ -447,8 +316,8 @@
   },
   "layouts": {
     "split2": [
-      "TITLE LEFT SCREEN",
-      "TITLE RIGHT SCREEN"
+      "PLAYER LEFT",
+      "PLAYER RIGHT"
     ],
     "split3": [
       "TITLE TOP SCREEN",
