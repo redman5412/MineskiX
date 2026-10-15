@@ -1,1 +1,87 @@
-{}
+{
+  "redbull_fullscreen": {
+    "#br-logo": {
+      "left": "1620px",
+      "top": "90px",
+      "width": "220px",
+      "height": "196px"
+    },
+    "#br-boxes": {
+      "left": "0px",
+      "top": "0px"
+    },
+    "#br-tag-uni": {
+      "left": "50px",
+      "top": "246px",
+      "width": "220px",
+      "height": "78px",
+      "fontSize": "30px"
+    },
+    "#br-tag-open": {
+      "left": "50px",
+      "top": "732px",
+      "width": "220px",
+      "height": "78px",
+      "fontSize": "30px"
+    },
+    "#br-r16-lbl": {
+      "left": "272px",
+      "top": "378px"
+    },
+    "#br-qf-uni": {
+      "left": "685px",
+      "top": "250px",
+      "width": "200px",
+      "height": "70px",
+      "fontSize": "34px"
+    },
+    "#br-qf-open": {
+      "left": "685px",
+      "top": "736px",
+      "width": "200px",
+      "height": "70px",
+      "fontSize": "34px"
+    },
+    "#br-sf-uni": {
+      "left": "965px",
+      "top": "265px",
+      "width": "200px",
+      "height": "40px",
+      "fontSize": "34px"
+    },
+    "#br-sf-open": {
+      "left": "965px",
+      "top": "751px",
+      "width": "200px",
+      "height": "40px",
+      "fontSize": "34px"
+    },
+    "#br-gf": {
+      "left": "1236px",
+      "top": "495px",
+      "width": "230px",
+      "height": "66px",
+      "fontSize": "34px"
+    },
+    "#br-win": {
+      "left": "1520px",
+      "top": "458px",
+      "width": "360px",
+      "height": "140px",
+      "fontSize": "76px"
+    },
+    "#br-fc27": {
+      "left": "1590px",
+      "top": "860px",
+      "width": "190px",
+      "height": "42px"
+    },
+    "#br-ps": {
+      "left": "1563px",
+      "top": "930px",
+      "width": "220px",
+      "height": "66px",
+      "asset": "/projects/redbull/assets/Wings%20Cup%20%C2%B7%20Full%20Screen/1792065478357-PS%20LOGO.png"
+    }
+  }
+}
