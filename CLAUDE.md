@@ -243,9 +243,14 @@ A self-contained project built from `projects/redbull/assets/Wings-Cup-Broadcast
 - **Adding a graphic:** key in `lib/redbull.js` `GRAPHICS` → scene markup/CSS/`apply` + `SCENES` entry in the
   page → row in the generator → re-run it → restart server. (`rbdata`/`redbull` are already in
   `KNOWN_EVENTS`; worker version already bumped.)
-- **Placeholders to replace:** `RB.FC27` / `RB.PS` in `rb-core.js` are stand-in wordmarks (no official
-  EA FC / PlayStation art was supplied) — upload real PNGs per scene via the Edit tab's asset override, or
-  swap the constants. Players without an uploaded photo show a silhouette. Only `FuturaforRedBull-CondBold`
+- **Brand art** lives in `projects/redbull/assets/brand/` and is wired via `RB.LOGO` / `RB.LOGO_TIGHT` /
+  `RB.FC27` / `RB.PS` in `rb-core.js` (official files, alpha-cropped). The Wings Cup logo has two versions:
+  `wingscuplogo-glow.png` (default; its glow fills most of the canvas, so those `.rb-logo` boxes are ~2x the
+  emblem) and `wingscuplogo-tight.png` (cropped + edge-faded) for elements with class `rb-logo-tight`
+  (Winner + all Supers), where the full glow would overlap neighbouring plates.
+- **`/html/redbull/*.js` is served with a 1-day browser cache** (server.js only no-caches `.html`/`.css`/
+  `/html/js/`), so bump the `?v=N` on the `rb-core.js` / `rb-dashboard-config.js` script tags when you change
+  them, or open OBS/vMix sources keep the old copy. Players without an uploaded photo show a silhouette. Only `FuturaforRedBull-CondBold`
   exists in the font folder, so "Bull Condensed Regular" (first names) renders in CondBold.
 - `routes/*.js` / `lib/*.js` changes here need a server restart like everything else.
 

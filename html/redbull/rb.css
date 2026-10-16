@@ -3,6 +3,8 @@
    Palette / typography per Wings-Cup-Broadcast-Design-System.pdf. */
 
 @font-face { font-family: 'RB Cond'; font-weight: 700; src: url('/projects/redbull/fonts/RedBull_FuturaforRedBull_MID-020261_D-016258/Font_Files/Web_Fonts/WOFF2/FuturaforRedBull-CondBold.woff2') format('woff2'); font-display: block; }
+@font-face { font-family: 'RB Bold'; font-weight: 700; src: url('/projects/redbull/fonts/RedBull_FuturaforRedBull_MID-020261_D-016258/Font_Files/Web_Fonts/WOFF2/FuturaforRedBull-Bold.woff2') format('woff2'); font-display: block; }
+@font-face { font-family: 'RB Book'; font-weight: 400; src: url('/projects/redbull/fonts/RedBull_FuturaforRedBull_MID-020261_D-016258/Font_Files/Web_Fonts/WOFF2/FuturaforRedBull-Book.woff2') format('woff2'); font-display: block; }
 @font-face { font-family: 'RB Apotek'; font-weight: 900; src: url('/projects/redbull/fonts/APOTEK%20font/ApotekBlack.otf') format('opentype'); font-display: block; }
 @font-face { font-family: 'RB Apotek'; font-weight: 600; src: url('/projects/redbull/fonts/APOTEK%20font/ApotekSemiBold.otf') format('opentype'); font-display: block; }
 @font-face { font-family: 'RB Mono'; font-weight: 400; src: url('/projects/redbull/fonts/azeret-mono/static/AzeretMono-Regular.ttf') format('truetype'); font-display: block; }
@@ -64,7 +66,12 @@ body { font-family: 'RB Cond', 'Arial Narrow', sans-serif; font-weight: 700; col
 .rb-fit { white-space: nowrap; overflow: hidden; }
 
 /* ── Brand ── */
-.rb-logo { position: absolute; object-fit: contain; filter: drop-shadow(0 6px 18px rgba(0,10,80,.35)); }
+/* Wings Cup logo art carries its own glow, so no drop-shadow. Default (.rb-logo) = full-glow file — its box
+   is ~2x the emblem since the glow fills most of the canvas. .rb-logo-tight = cropped, edge-faded file for
+   scenes where the full glow would overlap neighbouring plates (Winner, Supers). */
+.rb-logo { position: absolute; object-fit: contain; }
+.rb-text-bold { font-family: 'RB Bold', 'RB Cond', sans-serif; font-weight: 700; }
+.rb-text-book { font-family: 'RB Book', 'RB Cond', sans-serif; font-weight: 400; }
 .rb-fc27, .rb-ps { position: absolute; object-fit: contain; }
 
 .rb-flag { display: block; object-fit: cover; flex: 0 0 auto; box-shadow: 0 0 0 1px rgba(0,0,0,.25); }

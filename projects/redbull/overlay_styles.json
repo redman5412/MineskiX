@@ -1,10 +1,10 @@
 {
   "redbull_fullscreen": {
     "#br-logo": {
-      "left": "1620px",
-      "top": "90px",
-      "width": "220px",
-      "height": "196px"
+      "left": "1515px",
+      "top": "20px",
+      "width": "431px",
+      "height": "337px"
     },
     "#br-boxes": {
       "left": "0px",
@@ -75,20 +75,20 @@
       "top": "860px",
       "width": "190px",
       "height": "42px",
-      "asset": "/projects/redbull/assets/Wings%20Cup%20%C2%B7%20Full%20Screen/1792072117994-EAFCLOGO.png"
+      "asset": "/projects/redbull/assets/brand/eafc27.png"
     },
     "#br-ps": {
       "left": "1563px",
       "top": "930px",
       "width": "220px",
       "height": "66px",
-      "asset": "/projects/redbull/assets/Wings%20Cup%20%C2%B7%20Full%20Screen/1792065478357-PS%20LOGO.png"
+      "asset": "/projects/redbull/assets/brand/ps-tournaments.png"
     },
     "#s2-logo": {
-      "left": "876px",
-      "top": "72px",
-      "width": "168px",
-      "height": "150px"
+      "left": "796px",
+      "top": "19px",
+      "width": "329px",
+      "height": "257px"
     },
     "#s2-feed-l": {
       "left": "90px",
@@ -121,20 +121,20 @@
       "top": "914px",
       "width": "180px",
       "height": "40px",
-      "asset": "/projects/redbull/assets/Wings%20Cup%20%C2%B7%20Full%20Screen/1792072061404-EAFCLOGO.png"
+      "asset": "/projects/redbull/assets/brand/eafc27.png"
     },
     "#s2-ps": {
       "left": "1004px",
       "top": "908px",
       "width": "160px",
       "height": "48px",
-      "asset": "/projects/redbull/assets/Wings%20Cup%20%C2%B7%20Full%20Screen/1792072058201-PS%20LOGO.png"
+      "asset": "/projects/redbull/assets/brand/ps-tournaments.png"
     },
     "#cd-logo": {
-      "left": "820px",
-      "top": "100px",
-      "width": "280px",
-      "height": "249px"
+      "left": "686px",
+      "top": "11px",
+      "width": "548px",
+      "height": "428px"
     },
     "#cd-label": {
       "left": "644px",
@@ -155,54 +155,54 @@
       "top": "914px",
       "width": "180px",
       "height": "40px",
-      "asset": "/projects/redbull/assets/Wings%20Cup%20%C2%B7%20Full%20Screen/1792072073387-EAFCLOGO.png"
+      "asset": "/projects/redbull/assets/brand/eafc27.png"
     },
     "#cd-ps": {
       "left": "1004px",
       "top": "908px",
       "width": "160px",
       "height": "48px",
-      "asset": "/projects/redbull/assets/Wings%20Cup%20%C2%B7%20Full%20Screen/1792072076892-PS%20LOGO.png"
+      "asset": "/projects/redbull/assets/brand/ps-tournaments.png"
     },
     "#hp-logo": {
-      "left": "820px",
-      "top": "100px",
-      "width": "280px",
-      "height": "249px"
+      "left": "686px",
+      "top": "11px",
+      "width": "548px",
+      "height": "428px"
     },
     "#hp-title": {
       "left": "270px",
       "top": "504px",
       "width": "1380px",
       "height": "150px",
-      "fontSize": "104px"
+      "fontSize": "91px"
     },
     "#hp-sub": {
       "left": "330px",
       "top": "654px",
       "width": "1320px",
       "height": "96px",
-      "fontSize": "40px"
+      "fontSize": "36px"
     },
     "#hp-fc27": {
       "left": "750px",
       "top": "914px",
       "width": "180px",
       "height": "40px",
-      "asset": "/projects/redbull/assets/Wings%20Cup%20%C2%B7%20Full%20Screen/1792072084149-EAFCLOGO.png"
+      "asset": "/projects/redbull/assets/brand/eafc27.png"
     },
     "#hp-ps": {
       "left": "1004px",
       "top": "908px",
       "width": "160px",
       "height": "48px",
-      "asset": "/projects/redbull/assets/Wings%20Cup%20%C2%B7%20Full%20Screen/1792072087216-PS%20LOGO.png"
+      "asset": "/projects/redbull/assets/brand/ps-tournaments.png"
     },
     "#mi-logo": {
-      "left": "820px",
-      "top": "100px",
-      "width": "280px",
-      "height": "249px"
+      "left": "686px",
+      "top": "11px",
+      "width": "548px",
+      "height": "428px"
     },
     "#mi-bar-l": {
       "left": "176px",
@@ -228,14 +228,14 @@
       "top": "914px",
       "width": "180px",
       "height": "40px",
-      "asset": "/projects/redbull/assets/Wings%20Cup%20%C2%B7%20Full%20Screen/1792072099101-EAFCLOGO.png"
+      "asset": "/projects/redbull/assets/brand/eafc27.png"
     },
     "#mi-ps": {
       "left": "1004px",
       "top": "908px",
       "width": "160px",
       "height": "48px",
-      "asset": "/projects/redbull/assets/Wings%20Cup%20%C2%B7%20Full%20Screen/1792072101880-PS%20LOGO.png"
+      "asset": "/projects/redbull/assets/brand/ps-tournaments.png"
     },
     "#wn-logo": {
       "left": "500px",
@@ -248,7 +248,7 @@
       "top": "484px",
       "width": "780px",
       "height": "104px",
-      "fontSize": "62px"
+      "fontSize": "50px"
     },
     "#wn-sub": {
       "left": "724px",
@@ -262,14 +262,14 @@
       "top": "914px",
       "width": "180px",
       "height": "40px",
-      "asset": "/projects/redbull/assets/Wings%20Cup%20%C2%B7%20Full%20Screen/1792072128524-EAFCLOGO.png"
+      "asset": "/projects/redbull/assets/brand/eafc27.png"
     },
     "#wn-ps": {
       "left": "1004px",
       "top": "908px",
       "width": "160px",
       "height": "48px",
-      "asset": "/projects/redbull/assets/Wings%20Cup%20%C2%B7%20Full%20Screen/1792072133226-PS%20LOGO.png"
+      "asset": "/projects/redbull/assets/brand/ps-tournaments.png"
     }
   }
 }

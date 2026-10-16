@@ -9,18 +9,11 @@
   RB.serverOffset = 0;          // serverNow - Date.now(), for the countdown
   var listeners = [];
 
-  /* ── Placeholder art (replace via Edit tab → upload, or drop real files in). No player photos in this project. ── */
-  function svgUri(svg) { return 'data:image/svg+xml;utf8,' + encodeURIComponent(svg); }
-  RB.FC27 = svgUri(
-    '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 360 80"><circle cx="40" cy="40" r="34" fill="#fff"/>' +
-    '<text x="40" y="36" font-family="Arial" font-weight="900" font-size="15" text-anchor="middle" fill="#0F0069">EA</text>' +
-    '<text x="40" y="54" font-family="Arial" font-weight="700" font-size="9" text-anchor="middle" fill="#0F0069">SPORTS</text>' +
-    '<text x="92" y="60" font-family="Arial Black,Arial" font-weight="900" font-style="italic" font-size="62" fill="#fff">FC27</text></svg>');
-  RB.PS = svgUri(
-    '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 90"><path d="M10 14 v40 l14 5 V22 c0-4 2-3 4 -2 l28 10 v-12 L24 8 c-8 -2 -14 2 -14 6z" fill="#fff"/>' +
-    '<text x="70" y="42" font-family="Arial" font-weight="600" font-size="32" fill="#fff">PlayStation</text>' +
-    '<text x="70" y="76" font-family="Arial" font-weight="800" font-size="19" letter-spacing="5" fill="#fff">TOURNAMENTS</text></svg>');
-  RB.LOGO = '/projects/redbull/assets/brand/wingscuplogo.png';
+  /* ── Brand art (projects/redbull/assets/brand/). Edit tab can still override per element via asset upload. ── */
+  RB.LOGO = '/projects/redbull/assets/brand/wingscuplogo-glow.png';        // 1920x1500, emblem fills ~45% width
+  RB.LOGO_TIGHT = '/projects/redbull/assets/brand/wingscuplogo-tight.png'; // cropped + edge-faded, for .rb-logo-tight
+  RB.FC27 = '/projects/redbull/assets/brand/eafc27.png';
+  RB.PS = '/projects/redbull/assets/brand/ps-tournaments.png';
   RB.FLAG = function (iso2) { return iso2 ? '/projects/redbull/assets/flags/' + iso2 + '.svg' : ''; };
 
   RB.esc = function (s) { return String(s == null ? '' : s).replace(/[&<>"]/g, function (c) { return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]; }); };
@@ -106,7 +99,7 @@
 
   // Fills every <img class="rb-fc27|rb-ps|rb-logo"> that has no src yet.
   RB.paintBrand = function () {
-    document.querySelectorAll('img.rb-logo:not([src])').forEach(function (i) { i.src = RB.LOGO; });
+    document.querySelectorAll('img.rb-logo:not([src])').forEach(function (i) { i.src = i.classList.contains('rb-logo-tight') ? RB.LOGO_TIGHT : RB.LOGO; });
     document.querySelectorAll('img.rb-fc27:not([src])').forEach(function (i) { i.src = RB.FC27; });
     document.querySelectorAll('img.rb-ps:not([src])').forEach(function (i) { i.src = RB.PS; });
   };
