@@ -175,14 +175,14 @@
       "top": "504px",
       "width": "1380px",
       "height": "150px",
-      "fontSize": "91px"
+      "fontSize": "95px"
     },
     "#hp-sub": {
       "left": "330px",
       "top": "654px",
       "width": "1320px",
       "height": "96px",
-      "fontSize": "36px"
+      "fontSize": "34px"
     },
     "#hp-fc27": {
       "left": "750px",

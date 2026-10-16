@@ -250,14 +250,14 @@
         "top": 504,
         "width": 1380,
         "height": 150,
-        "fontSize": 91
+        "fontSize": 95
       },
       "#hp-sub": {
         "left": 330,
         "top": 654,
         "width": 1320,
         "height": 96,
-        "fontSize": 36
+        "fontSize": 34
       },
       "#hp-fc27": {
         "left": 750,
