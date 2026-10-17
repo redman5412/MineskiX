@@ -288,6 +288,26 @@ td { padding: 3px 4px; vertical-align: middle; } td.n { width: 28px; color: #555
     var c = panel('201c · Super Triple');
     [['a', 'Left'], ['b', 'Middle'], ['c', 'Right']].forEach(function (k) { c.appendChild(row(k[1], pSelect(U.triple[k[0]], function (v) { var o = {}; o[k[0]] = v; save({ supers: { triple: o } }); }))); });
     host.appendChild(c);
+    // 204 · Super Host / 205 · Super Casters — free-typed talent (not roster players), shown at different segments.
+    function talentRow(label, t, onSave) {
+      var r = el('div', 'row'); r.appendChild(el('label', '', label));
+      r.appendChild(tInput(t.first, function (v) { t.first = v; onSave(); }, 'First name'));
+      r.appendChild(tInput(t.last, function (v) { t.last = v; onSave(); }, 'Surname'));
+      r.appendChild(tInput(t.role, function (v) { t.role = v; onSave(); }, 'Role line'));
+      return r;
+    }
+    var H = U.host || {}, hostT = { first: H.first || '', last: H.last || '', role: H.role || 'HOST' };
+    var hp = panel('204 · Super Host', 'Name and the small role label under it.');
+    hp.appendChild(talentRow('Host', hostT, function () { save({ supers: { host: { first: hostT.first, last: hostT.last, role: hostT.role } } }); }));
+    host.appendChild(hp);
+    // Arrays replace wholesale on save, so always send both caster slots.
+    var C = (U.casters || []).map(function (t) { return { first: t.first || '', last: t.last || '', role: t.role || '' }; });
+    while (C.length < 2) C.push({ first: '', last: '', role: 'CASTER' });
+    function saveCasters() { save({ supers: { casters: C.map(function (t) { return { first: t.first, last: t.last, role: t.role }; }) } }); }
+    var cp = panel('205 · Super Casters', 'Leave a name empty to hide that slot on air (e.g. only one caster).');
+    cp.appendChild(talentRow('Caster 1 (left)', C[0], saveCasters));
+    cp.appendChild(talentRow('Caster 2 (right)', C[1], saveCasters));
+    host.appendChild(cp);
     var d = panel('202 · Super Free Text'); d.appendChild(row('Headline', tInput(U.free.headline, function (v) { save({ supers: { free: { headline: v } } }); })));
     d.appendChild(row('Supporting', tInput(U.free.sub, function (v) { save({ supers: { free: { sub: v } } }); }))); host.appendChild(d);
   }

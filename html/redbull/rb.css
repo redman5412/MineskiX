@@ -2,9 +2,13 @@
    overlay pages (redbull-fullscreen.html, redbull-supers.html).
    Palette / typography per Wings-Cup-Broadcast-Design-System.pdf. */
 
-@font-face { font-family: 'RB Cond'; font-weight: 700; src: url('/projects/redbull/fonts/RedBull_FuturaforRedBull_MID-020261_D-016258/Font_Files/Web_Fonts/WOFF2/FuturaforRedBull-CondBold.woff2') format('woff2'); font-display: block; }
+/* Client typography sheet: Apotek (event/secondary titles), Bull Condensed (every plate), Azeret Mono (numbers).
+   General Sans is kept only for the 102 Holding headline/sub-line (user's choice). */
+@font-face { font-family: 'RB Bull Cond'; font-weight: 400; src: url('/fonts/BullCondensed-Regular.ttf') format('truetype'); font-display: block; }
+@font-face { font-family: 'RB Bull Cond'; font-weight: 700; src: url('/fonts/BullCondensed-Bold.ttf') format('truetype'); font-display: block; }
+@font-face { font-family: 'RB Apotek'; font-weight: 900; src: url('/projects/redbull/fonts/APOTEK%20font/ApotekBlack.otf') format('opentype'); font-display: block; }
+@font-face { font-family: 'RB Apotek'; font-weight: 600; src: url('/projects/redbull/fonts/APOTEK%20font/ApotekSemiBold.otf') format('opentype'); font-display: block; }
 @font-face { font-family: 'RB General Sans'; font-weight: 600; src: url('/fonts/GeneralSans-Semibold.otf') format('opentype'); font-display: block; }
-@font-face { font-family: 'RB General Sans'; font-weight: 700; src: url('/fonts/GeneralSans-Bold.otf') format('opentype'); font-display: block; }
 @font-face { font-family: 'RB Mono'; font-weight: 800; src: url('/projects/redbull/fonts/azeret-mono/static/AzeretMono-ExtraBold.ttf') format('truetype'); font-display: block; }
 @font-face { font-family: 'RB General Sans'; font-weight: 500; src: url('/fonts/GeneralSans-Medium.otf') format('opentype'); font-display: block; }
 
@@ -18,8 +22,8 @@
 }
 
 html, body { margin: 0; padding: 0; background: transparent; overflow: hidden; width: 1920px; height: 1080px; }
-/* General Sans everywhere (Semibold default); the Leaderboard opts back into Futura Cond Bold in its own page CSS. */
-body { font-family: 'RB General Sans', 'RB Cond', sans-serif; font-weight: 600; color: #fff; }
+/* Bull Condensed Bold by default: plate titles, labels, surnames, country codes. */
+body { font-family: 'RB Bull Cond', 'Arial Narrow', sans-serif; font-weight: 700; color: #fff; }
 #rb-stage { position: absolute; left: 0; top: 0; width: 1920px; height: 1080px; overflow: hidden; }
 * { box-sizing: border-box; }
 .rb-abs { position: absolute; }
@@ -57,7 +61,7 @@ body { font-family: 'RB General Sans', 'RB Cond', sans-serif; font-weight: 600; 
 @keyframes rbSlideR { from { opacity: 0; transform: translateX(70px); } to { opacity: 1; transform: none; } }
 
 /* ── Text ── */
-.rb-name .fn { font-weight: 500; opacity: .88; }
+.rb-name .fn { font-weight: 400; opacity: .88; }   /* Bull Condensed Regular first names */
 .rb-name .ln { font-weight: 700; }
 .rb-fit { white-space: nowrap; overflow: hidden; }
 
@@ -66,9 +70,11 @@ body { font-family: 'RB General Sans', 'RB Cond', sans-serif; font-weight: 600; 
    is ~2x the emblem since the glow fills most of the canvas. .rb-logo-tight = cropped, edge-faded file for
    scenes where the full glow would overlap neighbouring plates (Winner, Supers). */
 .rb-logo { position: absolute; object-fit: contain; }
-.rb-gs-semibold { font-family: 'RB General Sans', 'RB Cond', sans-serif; font-weight: 600; }
-.rb-gs-medium { font-family: 'RB General Sans', 'RB Cond', sans-serif; font-weight: 500; }
-.rb-gs-bold { font-family: 'RB General Sans', 'RB Cond', sans-serif; font-weight: 700; }   /* VS */
+.rb-bc-regular { font-family: 'RB Bull Cond', 'Arial Narrow', sans-serif; font-weight: 400; }   /* sub-plates, body */
+.rb-apotek-black { font-family: 'RB Apotek', 'RB Bull Cond', sans-serif; font-weight: 900; }   /* event titles: VS, bracket WINNER */
+.rb-apotek-semi { font-family: 'RB Apotek', 'RB Bull Cond', sans-serif; font-weight: 600; }   /* secondary titles: CHAMPIONSHIP WINNER, bracket rounds */
+.rb-gs-semibold { font-family: 'RB General Sans', 'RB Bull Cond', sans-serif; font-weight: 600; }   /* Holding headline only */
+.rb-gs-medium { font-family: 'RB General Sans', 'RB Bull Cond', sans-serif; font-weight: 500; }   /* Holding sub-line only */
 .rb-mono { font-family: 'RB Mono', monospace; font-weight: 800; }   /* every number: countdown, scores, times, stats (client typography sheet) */
 .ctry, .rb-chip { font-weight: 700; }   /* country codes */
 .rb-fc27, .rb-ps { position: absolute; object-fit: contain; }
@@ -82,7 +88,7 @@ body { font-family: 'RB General Sans', 'RB Cond', sans-serif; font-weight: 600; 
 .rb-feed { position: absolute; background: transparent; }
 body.rb-preview .rb-feed { background: repeating-linear-gradient(135deg, #123 0 18px, #1b3550 18px 36px); outline: 3px dashed rgba(255,255,255,.55); outline-offset: -3px; }
 body.rb-preview .rb-feed::before { content: 'GAME FEED'; position: absolute; inset: 0; display: flex; align-items: center; justify-content: center;
-  font: 700 42px 'RB Cond', sans-serif; letter-spacing: 6px; color: rgba(255,255,255,.7); }
+  font: 700 42px 'RB Bull Cond', sans-serif; letter-spacing: 6px; color: rgba(255,255,255,.7); }
 
 /* Edit-tab interaction hooks (dashboard injects its own too) */
 .rb-hidden { display: none !important; }

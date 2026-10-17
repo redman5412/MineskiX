@@ -18,7 +18,7 @@
 .logo-tl { left: 50px; top: 12px;  width: 384px; height: 300px; }
 
 /* 101 COUNTDOWN */
-#cd-label { left: 644px; top: 496px; width: 572px; height: 84px; --sl: 28px; font-size: 46px; letter-spacing: 1px; justify-content: flex-start; padding-left: 34px; text-transform: uppercase; }
+#cd-label { left: 644px; top: 496px; width: 572px; height: 84px; --sl: 28px; font-size: 52px; letter-spacing: 1px; justify-content: flex-start; padding-left: 34px; text-transform: uppercase; }
 #cd-time .cl { font-style: normal; margin: 0 .08em; }
 #cd-time  { left: 748px; top: 584px; width: 532px; height: 152px; --sl: 30px; font-size: 118px; letter-spacing: 2px; }
 
@@ -27,8 +27,8 @@
 #hp-sub   { left: 330px; top: 654px; width: 1320px; height: 96px; --sl: 34px; font-size: 34px; letter-spacing: 4px; text-transform: uppercase; padding: 0 60px; }
 
 /* 106 DAYS SCHEDULE */
-#sc-title { left: 366px; top: 136px; width: 438px; height: 88px; --sl: 30px; font-size: 46px; letter-spacing: 1px; text-transform: uppercase; }
-#sc-sub   { left: 390px; top: 224px; width: 410px; height: 64px; --sl: 24px; font-size: 30px; letter-spacing: 1px; text-transform: uppercase; }
+#sc-title { left: 366px; top: 136px; width: 438px; height: 88px; --sl: 30px; font-size: 55px; letter-spacing: 1px; text-transform: uppercase; }
+#sc-sub   { left: 390px; top: 224px; width: 410px; height: 64px; --sl: 24px; font-size: 40px; letter-spacing: 1px; text-transform: uppercase; }
 #sc-tab   { position: absolute; left: 292px; top: 468px; width: 64px; height: 262px; display: flex; align-items: center; justify-content: center; background: var(--rb-navy-plate); }
 #sc-tab span { transform: rotate(-90deg); white-space: nowrap; font-size: 38px; letter-spacing: 3px; }
 #sc-rows  { position: absolute; left: 364px; top: 332px; width: 960px; height: 540px; }
@@ -49,10 +49,10 @@
 .bar { position: absolute; display: flex; }
 .bar .rb-plate { position: relative; height: 100%; }
 .bar .ctry { width: 200px; background: var(--rb-navy-deep); gap: 14px; font-size: 40px; }
-.bar .nm   { flex: 1; background: var(--rb-navy-plate); font-size: 44px; padding: 0 calc(var(--sl) + 8px); }   /* keep text clear of the slanted end */
+.bar .nm   { flex: 1; background: var(--rb-navy-plate); font-size: 55px; padding: 0 calc(var(--sl) + 8px); }   /* keep text clear of the slanted end */
 .bar .rb-flag { width: 62px; height: 42px; }
-#mr-name-l { left: 316px; top: 486px; width: 424px; height: 84px; --sl: 26px; font-size: 40px; padding: 0 34px; }
-#mr-name-r { left: 1180px; top: 486px; width: 424px; height: 84px; --sl: 26px; font-size: 40px; padding: 0 34px; }
+#mr-name-l { left: 316px; top: 486px; width: 424px; height: 84px; --sl: 26px; font-size: 52px; padding: 0 34px; }
+#mr-name-r { left: 1180px; top: 486px; width: 424px; height: 84px; --sl: 26px; font-size: 52px; padding: 0 34px; }
 #mr-score  { left: 740px; top: 460px; width: 440px; height: 130px; font-size: 104px; letter-spacing: 3px; color: #fff; justify-content: center; display: flex; align-items: center; text-shadow: 0 4px 18px rgba(0,0,80,.45); }
 #mr-chip-l { left: 544px; top: 576px; width: 150px; height: 40px; font-size: 28px; }
 #mr-chip-r { left: 1200px; top: 576px; width: 150px; height: 40px; font-size: 28px; }
@@ -79,7 +79,7 @@
 .rb-active #br-lines path { animation: rbDraw 1.4s .3s ease-out forwards; }
 .rb-page:not(.rb-active) #br-lines path { stroke-dashoffset: 0; }
 @keyframes rbDraw { to { stroke-dashoffset: 0; } }
-.brl { font-size: 30px; letter-spacing: 1px; text-transform: uppercase; line-height: 1; }
+.brl { font-family: 'RB Apotek', 'RB Bull Cond', sans-serif; font-weight: 600; font-size: 30px; letter-spacing: 1px; text-transform: uppercase; line-height: 1; }   /* bracket round labels = secondary titles */
 .brtag { font-size: 30px; letter-spacing: .5px; text-transform: uppercase; line-height: 1; padding: 0 14px; white-space: normal; text-align: center; }   /* wraps to 2 lines: "UNIV LEAGUE WINNER" is too wide for one line in General Sans */
 .brtag.uni  { background: var(--rb-red); color: #fff; }
 .brtag.open { background: var(--rb-yellow); color: var(--rb-navy); }
@@ -92,16 +92,14 @@
 #br-sf-uni  { left: 965px; top: 265px; width: 200px; height: 40px; }
 #br-sf-open { left: 965px; top: 751px; width: 200px; height: 40px; }
 #br-gf  { left: 1236px; top: 495px; width: 230px; height: 66px; }
-#br-win { left: 1520px; top: 458px; width: 360px; height: 140px; background: #fff; color: #111; font-size: 76px; padding: 0 20px; justify-content: center; }
+#br-win { left: 1520px; top: 458px; width: 360px; height: 140px; background: #fff; color: #111; font-size: 87px; padding: 0 20px; justify-content: center; }
 #br-logo { left: 1515px; top: 20px; width: 431px; height: 337px; }
 #br-fc27 { left: 1590px; top: 860px; width: 190px; height: 42px; }
 #br-ps   { left: 1610px; top: 930px; width: 150px; height: 45px; }
 
 /* 108 LEADERBOARD */
-/* Leaderboard keeps Futura for Red Bull Cond Bold (rest of the set is General Sans). */
-#lb-page, #lb-page .rb-name .fn, #lb-page .rb-name .ln { font-family: 'RB Cond', 'Arial Narrow', sans-serif; font-weight: 700; }
-#lb-title { left: 492px; top: 132px; width: 402px; height: 88px; --sl: 28px; font-size: 46px; letter-spacing: 1px; text-transform: uppercase; }
-#lb-sub   { left: 516px; top: 220px; width: 404px; height: 64px; --sl: 22px; font-size: 28px; letter-spacing: 1px; text-transform: uppercase; }
+#lb-title { left: 492px; top: 132px; width: 402px; height: 88px; --sl: 28px; font-size: 55px; letter-spacing: 1px; text-transform: uppercase; }
+#lb-sub   { left: 516px; top: 220px; width: 404px; height: 64px; --sl: 22px; font-size: 40px; letter-spacing: 1px; text-transform: uppercase; }
 #lb-heads { position: absolute; left: 996px; top: 306px; width: 360px; height: 44px; display: flex; font-size: 34px; letter-spacing: 1px; }
 #lb-heads span { width: 72px; text-align: center; }
 #lb-tabA { left: 436px; top: 408px; width: 56px; height: 188px; }
@@ -119,8 +117,8 @@
 
 /* 110 WINNER */
 #wn-logo  { left: 500px; top: 420px; width: 290px; height: 258px; z-index: 3; }
-#wn-name  { left: 690px; top: 484px; width: 780px; height: 104px; --sl: 34px; font-size: 62px; letter-spacing: 1px; padding: 0 70px 0 130px; }
-#wn-sub   { left: 724px; top: 590px; width: 660px; height: 84px; --sl: 28px; font-size: 36px; letter-spacing: 3px; text-transform: uppercase; padding-left: 70px; }
+#wn-name  { left: 690px; top: 484px; width: 780px; height: 104px; --sl: 34px; font-size: 64px; letter-spacing: 1px; padding: 0 70px 0 130px; }
+#wn-sub   { left: 724px; top: 590px; width: 660px; height: 84px; --sl: 28px; font-size: 52px; letter-spacing: 3px; text-transform: uppercase; padding-left: 70px; }
 
 /* 107a/107b/PiP/109 LAYOUTS */
 .ttl { font-size: 38px; letter-spacing: 2px; text-transform: uppercase; justify-content: flex-start; padding-left: 28px; }
@@ -133,18 +131,18 @@
 #s3-feed-t { left: 634px; top: 140px; width: 610px; height: 342px; }
 #s3-feed-l { left: 310px; top: 580px; width: 614px; height: 342px; }
 #s3-feed-r { left: 960px; top: 580px; width: 614px; height: 342px; }
-#s3-title-t { left: 634px; top: 488px; width: 340px; height: 50px; --sl: 18px; font-size: 26px; padding-left: 20px; }
-#s3-title-l { left: 310px; top: 928px; width: 340px; height: 50px; --sl: 18px; font-size: 26px; padding-left: 20px; }
-#s3-title-r { left: 960px; top: 928px; width: 340px; height: 50px; --sl: 18px; font-size: 26px; padding-left: 20px; }
+#s3-title-t { left: 634px; top: 488px; width: 340px; height: 50px; --sl: 18px; font-size: 31px; padding-left: 20px; }
+#s3-title-l { left: 310px; top: 928px; width: 340px; height: 50px; --sl: 18px; font-size: 31px; padding-left: 20px; }
+#s3-title-r { left: 960px; top: 928px; width: 340px; height: 50px; --sl: 18px; font-size: 31px; padding-left: 20px; }
 #pp-logo { left: 1499px; top: -3px; width: 412px; height: 322px; }
 #pp-feed-main  { left: 184px; top: 176px; width: 1232px; height: 693px; }
 #pp-feed-inset { left: 1328px; top: 714px; width: 392px; height: 220px; }
 #pp-title { left: 184px; top: 884px; width: 486px; height: 66px; --sl: 24px; }
 #lbk-logo { left: 5px; top: -6px; width: 431px; height: 337px; }
 #lbk-feed { left: 410px; top: 0; width: 1510px; height: 850px; }
-#lbk-name-1 { left: 90px; top: 400px; width: 246px; height: 80px; --sl: 20px; font-size: 40px; justify-content: center; padding: 0; }
+#lbk-name-1 { left: 90px; top: 400px; width: 246px; height: 80px; --sl: 20px; font-size: 50px; justify-content: center; padding: 0; }
 #lbk-vs { left: 152px; top: 500px; width: 104px; height: 52px; --sl: 12px; font-size: 32px; }
-#lbk-name-2 { left: 90px; top: 568px; width: 246px; height: 78px; --sl: 20px; font-size: 40px; justify-content: center; padding: 0; }
+#lbk-name-2 { left: 90px; top: 568px; width: 246px; height: 78px; --sl: 20px; font-size: 50px; justify-content: center; padding: 0; }
 #lbk-fc27 { left: 110px; top: 868px; width: 190px; height: 42px; }
 #lbk-ps   { left: 130px; top: 940px; width: 150px; height: 45px; }
 
@@ -166,7 +164,7 @@
   <!-- 101 COUNTDOWN -->
   <div id="cd-page" class="rb-page">
     <img id="cd-logo" class="rb-logo logo-c rb-pop">
-    <div id="cd-label" class="rb-plate rb-navy sl-r rb-gs-medium rb-slide-l" style="--d:.15s" data-fit="46,24"></div>
+    <div id="cd-label" class="rb-plate rb-navy sl-r rb-slide-l" style="--d:.15s" data-fit="52,24"></div>
     <div id="cd-time" class="rb-plate rb-silver sl-r rb-mono rb-slide-r" style="--d:.25s" data-fit="118,60"></div>
     <img id="cd-fc27" class="rb-fc27 mk-b-fc"><img id="cd-ps" class="rb-ps mk-b-ps">
   </div>
@@ -181,8 +179,8 @@
 
   <!-- 106 DAYS SCHEDULE -->
   <div id="sc-page" class="rb-page">
-    <div id="sc-title" class="rb-plate rb-silver sl-r rb-slide-l" data-fit="46,24"></div>
-    <div id="sc-sub" class="rb-plate rb-navy sl-r rb-gs-medium rb-slide-l" style="--d:.1s" data-fit="30,16"></div>
+    <div id="sc-title" class="rb-plate rb-silver sl-r rb-slide-l" data-fit="55,24"></div>
+    <div id="sc-sub" class="rb-plate rb-navy sl-r rb-bc-regular rb-slide-l" style="--d:.1s" data-fit="40,16"></div>
     <img id="sc-logo" class="rb-logo" style="left:1231px;top:-5px;width:463px;height:361px">
     <div id="sc-tab" class="rb-slide-l" style="--d:.2s"><span>MATCHES</span></div>
     <div id="sc-rows"></div>
@@ -193,7 +191,7 @@
   <div id="mi-page" class="rb-page">
     <img id="mi-logo" class="rb-logo logo-c rb-pop">
     <div id="mi-bar-l" class="bar rb-slide-l" style="--d:.2s"></div>
-    <div id="mi-vs" class="rb-plate rb-gs-bold rb-pop" style="--d:.35s;color:#fff;text-shadow:0 4px 20px rgba(0,0,90,.5)">VS</div>
+    <div id="mi-vs" class="rb-plate rb-apotek-black rb-pop" style="--d:.35s;color:#fff;text-shadow:0 4px 20px rgba(0,0,90,.5)">VS</div>
     <div id="mi-bar-r" class="bar rb-slide-r" style="--d:.2s"></div>
     <img id="mi-fc27" class="rb-fc27 mk-b-fc"><img id="mi-ps" class="rb-ps mk-b-ps">
   </div>
@@ -201,9 +199,9 @@
   <!-- 103b MATCH RESULTS -->
   <div id="mr-page" class="rb-page">
     <img id="mr-logo" class="rb-logo logo-c rb-pop">
-    <div id="mr-name-l" class="rb-plate rb-navy sl-r rb-name rb-slide-l" style="--d:.2s" data-fit="40,20"></div>
+    <div id="mr-name-l" class="rb-plate rb-navy sl-r rb-name rb-slide-l" style="--d:.2s" data-fit="52,20"></div>
     <div id="mr-score" class="rb-plate rb-mono rb-pop" style="--d:.35s" data-fit="104,56"></div>
-    <div id="mr-name-r" class="rb-plate rb-navy sl-l rb-name rb-slide-r" style="--d:.2s" data-fit="40,20"></div>
+    <div id="mr-name-r" class="rb-plate rb-navy sl-l rb-name rb-slide-r" style="--d:.2s" data-fit="52,20"></div>
     <div id="mr-chip-l" class="rb-chip rb-pop" style="--d:.4s"></div><div id="mr-chip-r" class="rb-chip rb-pop" style="--d:.4s"></div>
     <img id="mr-fc27" class="rb-fc27 mk-b-fc"><img id="mr-ps" class="rb-ps mk-b-ps">
   </div>
@@ -232,22 +230,22 @@
     <img id="br-logo" class="rb-logo rb-pop">
     <div id="br-boxes" class="grid"><svg id="br-lines" viewBox="0 0 1920 1080"></svg></div>
     <div id="br-r16-lbl" class="rb-abs brl rb-pop" style="display:flex;align-items:center;justify-content:center"><span>ROUND OF 16</span></div>
-    <div id="br-tag-uni" class="rb-plate brtag uni rb-slide-l" data-fit="30,14"></div>
-    <div id="br-tag-open" class="rb-plate brtag open rb-slide-l" style="--d:.1s" data-fit="30,14"></div>
+    <div id="br-tag-uni" class="rb-plate brtag uni rb-slide-l" data-fit="34,14"></div>
+    <div id="br-tag-open" class="rb-plate brtag open rb-slide-l" style="--d:.1s" data-fit="34,14"></div>
     <div id="br-qf-uni" class="rb-abs brl rb-pop" style="display:flex;align-items:center;justify-content:center;text-align:center;--d:.3s">QUARTER<br>FINAL</div>
     <div id="br-qf-open" class="rb-abs brl rb-pop" style="display:flex;align-items:center;justify-content:center;text-align:center;--d:.3s">QUARTER<br>FINAL</div>
     <div id="br-sf-uni" class="rb-abs brl rb-pop" style="display:flex;align-items:center;justify-content:center;--d:.4s">SEMI FINAL</div>
     <div id="br-sf-open" class="rb-abs brl rb-pop" style="display:flex;align-items:center;justify-content:center;--d:.4s">SEMI FINAL</div>
     <div id="br-gf" class="rb-abs brl rb-pop" style="display:flex;align-items:center;justify-content:center;--d:.5s">GRAND FINAL</div>
-    <div id="br-win" class="rb-abs rb-name rb-pop" style="display:flex;align-items:center;justify-content:safe center;overflow:hidden;white-space:nowrap;text-transform:uppercase;--d:.6s" data-fit="76,28">WINNER</div>
+    <div id="br-win" class="rb-abs rb-name rb-apotek-black rb-pop" style="display:flex;align-items:center;justify-content:safe center;overflow:hidden;white-space:nowrap;text-transform:uppercase;--d:.6s" data-fit="87,28">WINNER</div>
     <img id="br-fc27" class="rb-fc27"><img id="br-ps" class="rb-ps">
   </div>
 
   <!-- 108 LEADERBOARD -->
   <div id="lb-page" class="rb-page">
     <img id="lb-logo" class="rb-logo logo-tl">
-    <div id="lb-title" class="rb-plate rb-silver sl-r rb-slide-l" data-fit="46,24"></div>
-    <div id="lb-sub" class="rb-plate rb-navy sl-r rb-slide-l" style="--d:.1s" data-fit="28,16"></div>
+    <div id="lb-title" class="rb-plate rb-silver sl-r rb-slide-l" data-fit="55,24"></div>
+    <div id="lb-sub" class="rb-plate rb-navy sl-r rb-bc-regular rb-slide-l" style="--d:.1s" data-fit="40,16"></div>
     <div id="lb-heads" class="rb-pop" style="--d:.2s"><span>GP</span><span>W</span><span>L</span><span>D</span><span>GD</span></div>
     <div id="lb-tabA" class="lbtab rb-slide-l" style="--d:.2s"><span>GROUP A</span></div>
     <div id="lb-tabB" class="lbtab rb-slide-l" style="--d:.3s"><span>GROUP B</span></div>
@@ -258,8 +256,8 @@
   <!-- 110 WINNER -->
   <div id="wn-page" class="rb-page">
     <img id="wn-logo" class="rb-logo rb-logo-tight rb-pop" style="--d:.15s">
-    <div id="wn-name" class="rb-plate rb-silver sl-r rb-name rb-slide-r" style="--d:.2s" data-fit="62,28"></div>
-    <div id="wn-sub" class="rb-plate rb-navy sl-r rb-gs-medium rb-slide-r" style="--d:.35s" data-fit="36,18"></div>
+    <div id="wn-name" class="rb-plate rb-silver sl-r rb-name rb-slide-r" style="--d:.2s" data-fit="64,28"></div>
+    <div id="wn-sub" class="rb-plate rb-navy sl-r rb-apotek-semi rb-slide-r" style="--d:.35s" data-fit="52,18"></div>
     <img id="wn-fc27" class="rb-fc27 mk-b-fc"><img id="wn-ps" class="rb-ps mk-b-ps">
   </div>
 
@@ -267,33 +265,33 @@
   <div id="s2-page" class="rb-page">
     <img id="s2-logo" class="rb-logo">
     <div id="s2-feed-l" class="rb-feed"></div><div id="s2-feed-r" class="rb-feed"></div>
-    <div id="s2-title-l" class="rb-plate rb-navy sl-r ttl rb-slide-l" data-fit="38,18"></div>
-    <div id="s2-title-r" class="rb-plate rb-navy sl-r ttl rb-slide-l" data-fit="38,18"></div>
+    <div id="s2-title-l" class="rb-plate rb-navy sl-r ttl rb-slide-l" data-fit="45,18"></div>
+    <div id="s2-title-r" class="rb-plate rb-navy sl-r ttl rb-slide-l" data-fit="45,18"></div>
     <img id="s2-fc27" class="rb-fc27 mk-b-fc"><img id="s2-ps" class="rb-ps mk-b-ps">
   </div>
   <!-- 107b 3-WAY SPLIT -->
   <div id="s3-page" class="rb-page">
     <img id="s3-logo" class="rb-logo">
     <div id="s3-feed-t" class="rb-feed"></div><div id="s3-feed-l" class="rb-feed"></div><div id="s3-feed-r" class="rb-feed"></div>
-    <div id="s3-title-t" class="rb-plate rb-navy sl-r ttl rb-slide-l" data-fit="26,14"></div>
-    <div id="s3-title-l" class="rb-plate rb-navy sl-r ttl rb-slide-l" data-fit="26,14"></div>
-    <div id="s3-title-r" class="rb-plate rb-navy sl-r ttl rb-slide-l" data-fit="26,14"></div>
+    <div id="s3-title-t" class="rb-plate rb-navy sl-r ttl rb-slide-l" data-fit="31,14"></div>
+    <div id="s3-title-l" class="rb-plate rb-navy sl-r ttl rb-slide-l" data-fit="31,14"></div>
+    <div id="s3-title-r" class="rb-plate rb-navy sl-r ttl rb-slide-l" data-fit="31,14"></div>
     <img id="s3-fc27" class="rb-fc27 mk-t-fc"><img id="s3-ps" class="rb-ps mk-t-ps">
   </div>
   <!-- 107b PICTURE IN PICTURE -->
   <div id="pp-page" class="rb-page">
     <img id="pp-logo" class="rb-logo">
     <div id="pp-feed-main" class="rb-feed"></div><div id="pp-feed-inset" class="rb-feed"></div>
-    <div id="pp-title" class="rb-plate rb-navy sl-r ttl rb-slide-l" data-fit="36,18"></div>
+    <div id="pp-title" class="rb-plate rb-navy sl-r ttl rb-slide-l" data-fit="41,18"></div>
     <img id="pp-fc27" class="rb-fc27" style="left:1600px;top:390px;width:180px;height:40px"><img id="pp-ps" class="rb-ps" style="left:1610px;top:462px;width:150px;height:45px">
   </div>
   <!-- 109 L-BRACKET -->
   <div id="lbk-page" class="rb-page">
     <img id="lbk-logo" class="rb-logo">
     <div id="lbk-feed" class="rb-feed"></div>
-    <div id="lbk-name-1" class="rb-plate rb-navy sl-r rb-name rb-slide-l" data-fit="40,18"></div>
-    <div id="lbk-vs" class="rb-plate rb-silver sl-both rb-gs-bold rb-pop" style="--d:.2s">VS</div>
-    <div id="lbk-name-2" class="rb-plate rb-navy sl-r rb-name rb-slide-l" style="--d:.1s" data-fit="40,18"></div>
+    <div id="lbk-name-1" class="rb-plate rb-navy sl-r rb-name rb-slide-l" data-fit="50,18"></div>
+    <div id="lbk-vs" class="rb-plate rb-silver sl-both rb-apotek-black rb-pop" style="--d:.2s">VS</div>
+    <div id="lbk-name-2" class="rb-plate rb-navy sl-r rb-name rb-slide-l" style="--d:.1s" data-fit="50,18"></div>
     <img id="lbk-fc27" class="rb-fc27"><img id="lbk-ps" class="rb-ps">
   </div>
 
@@ -307,7 +305,7 @@
 </div>
 
 <script src="/html/js/overlay-sse-shim.js"></script>
-<script src="/html/redbull/rb-core.js?v=4"></script>
+<script src="/html/redbull/rb-core.js?v=5"></script>
 <script>
 (function () {
   'use strict';
@@ -343,7 +341,7 @@
   }
   function bar(pl, side) {
     var ctry = '<div class="rb-plate rb-deep ctry ' + (side === 'l' ? 'sl-r' : 'sl-l') + '" style="--sl:26px">' + flagImg(pl) + '<span>' + RB.esc(pl.code) + '</span></div>';
-    var nm = '<div class="rb-plate rb-navy nm rb-name ' + (side === 'l' ? 'sl-r' : 'sl-l') + '" style="--sl:26px" data-fit="44,22">' + RB.nameHTML(pl) + '</div>';
+    var nm = '<div class="rb-plate rb-navy nm rb-name ' + (side === 'l' ? 'sl-r' : 'sl-l') + '" style="--sl:26px" data-fit="55,22">' + RB.nameHTML(pl) + '</div>';
     return side === 'l' ? ctry + nm : nm + ctry;
   }
   function applyMatchId(s) {
@@ -367,7 +365,7 @@
   }
   function applyTop16(s) {
     var ids = s.top16, h = '';
-    var V = { cw: '246px', ch: '96px', nw: '230px', nh: '56px', nt: '0px', ct: '62px', chw: '106px', chh: '32px', fs: '28px', cfs: '20px' };
+    var V = { cw: '246px', ch: '96px', nw: '230px', nh: '56px', nt: '0px', ct: '62px', chw: '106px', chh: '32px', fs: '35px', cfs: '20px' };
     var rows = [[584, 830, 1076, 1326], [344, 590, 836, 1080, 1326, 1574], [344, 590, 836, 1080, 1326, 1574]];
     var tops = [310, 510, 710], n = 0;
     rows.forEach(function (xs, r) { xs.forEach(function (cx) { h += cell(RB.player(ids[n]), cx - 123, tops[r], V, 0.1 + n * 0.04); n++; }); });
@@ -375,14 +373,14 @@
   }
   function applyTop8(s) {
     var ids = s.top8, h = '';
-    var V = { cw: '300px', ch: '116px', nw: '290px', nh: '68px', nt: '0px', ct: '76px', chw: '116px', chh: '38px', fs: '38px', cfs: '24px' };
+    var V = { cw: '300px', ch: '116px', nw: '290px', nh: '68px', nt: '0px', ct: '76px', chw: '116px', chh: '38px', fs: '42px', cfs: '24px' };
     var xs = [424, 788, 1148, 1508], tops = [400, 600];
     for (var n = 0; n < 8; n++) h += cell(RB.player(ids[n]), xs[n % 4] - 150, tops[Math.floor(n / 4)], V, 0.1 + n * 0.05);
     $('t8-grid').innerHTML = h;
   }
   function applyTop4(s) {
     var ids = s.top4, h = '';
-    var V = { cw: '420px', ch: '150px', nw: '390px', nh: '92px', nt: '0px', ct: '100px', chw: '136px', chh: '44px', fs: '52px', cfs: '28px' };
+    var V = { cw: '420px', ch: '150px', nw: '390px', nh: '92px', nt: '0px', ct: '100px', chw: '136px', chh: '44px', fs: '57px', cfs: '28px' };
     var xs = [364, 760, 1156, 1550];
     for (var n = 0; n < 4; n++) h += cell(RB.player(ids[n]), xs[n] - 210, 470, V, 0.1 + n * 0.07);
     $('t4-grid').innerHTML = h;

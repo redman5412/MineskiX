@@ -15,7 +15,7 @@
 #ss-logo { left: 76px; top: 756px; width: 220px; height: 196px; }
 #ss-name { left: 256px; top: 820px; width: 486px; height: 76px; --sl: 30px; }
 #ss-ctry { left: 718px; top: 820px; width: 246px; height: 76px; --sl: 30px; justify-content: center; padding-left: 28px; }
-#ss-role { left: 256px; top: 898px; width: 218px; height: 46px; --sl: 18px; font-size: 24px; letter-spacing: 2px; text-transform: uppercase; }
+#ss-role { left: 256px; top: 898px; width: 218px; height: 46px; --sl: 18px; font-size: 29px; letter-spacing: 2px; text-transform: uppercase; }
 /* 201b DOUBLE */
 #sd-c1 { left: 36px; top: 894px; width: 268px; height: 76px; --sl: 30px; }
 #sd-n1 { left: 298px; top: 894px; width: 542px; height: 76px; --sl: 30px; }
@@ -30,16 +30,28 @@
 #st-c1 { left: 304px; top: 946px; width: 164px; height: 34px; }
 #st-c2 { left: 824px; top: 946px; width: 164px; height: 34px; }
 #st-c3 { left: 1344px; top: 946px; width: 164px; height: 34px; }
+/* 204 HOST / 205 CASTERS — 201c style; the chip under each name is a plain role label, no flag */
+#ho-logo { left: 112px; top: 806px; width: 210px; height: 187px; }
+#ho-n1 { left: 296px; top: 874px; width: 480px; height: 70px; --sl: 24px; }
+#ho-r1 { left: 304px; top: 946px; width: 164px; height: 34px; }
+/* 205: logo centred (960), Caster 1 left of it, Caster 2 mirrored on the right (like 201b Double) */
+#ca-logo { left: 855px; top: 806px; width: 210px; height: 187px; }
+#ca-n1 { left: 355px; top: 874px; width: 480px; height: 70px; --sl: 24px; }
+#ca-n2 { left: 1085px; top: 874px; width: 480px; height: 70px; --sl: 24px; }
+#ca-r1 { left: 363px; top: 946px; width: 164px; height: 34px; }
+#ca-r2 { left: 1393px; top: 946px; width: 164px; height: 34px; clip-path: polygon(0 0, 100% 0, 100% 100%, 10px 100%); }
+.tl-role { justify-content: center; text-transform: uppercase; letter-spacing: 1px; padding: 0 16px 0 10px; }
+.tl-off { visibility: hidden; }
 /* 202 FREE TEXT */
 #sf-logo { left: 76px; top: 756px; width: 220px; height: 196px; }
-#sf-head { left: 256px; top: 820px; width: 844px; height: 76px; --sl: 30px; font-size: 44px; text-transform: uppercase; justify-content: flex-start; padding-left: 36px; }
-#sf-sub  { left: 240px; top: 896px; width: 1010px; height: 56px; --sl: 24px; font-size: 28px; justify-content: flex-start; padding-left: 36px; }
+#sf-head { left: 256px; top: 820px; width: 844px; height: 76px; --sl: 30px; font-size: 47px; text-transform: uppercase; justify-content: flex-start; padding-left: 36px; }
+#sf-sub  { left: 240px; top: 896px; width: 1010px; height: 56px; --sl: 24px; font-size: 35px; justify-content: flex-start; padding-left: 36px; }
 /* 203 VS SUPER */
 #sv-c1 { left: 260px; top: 856px; width: 200px; height: 76px; --sl: 26px; }
-#sv-n1 { left: 454px; top: 856px; width: 300px; height: 76px; --sl: 26px; font-size: 34px; padding: 0 30px 0 20px; }
+#sv-n1 { left: 454px; top: 856px; width: 300px; height: 76px; --sl: 26px; font-size: 47px; padding: 0 30px 0 20px; }
 #sv-s1 { left: 754px; top: 856px; width: 110px; height: 76px; --sl: 0px; font-size: 54px; }
 #sv-s2 { left: 1056px; top: 856px; width: 110px; height: 76px; --sl: 0px; font-size: 54px; }
-#sv-n2 { left: 1166px; top: 856px; width: 300px; height: 76px; --sl: 26px; font-size: 34px; padding: 0 20px 0 30px; }
+#sv-n2 { left: 1166px; top: 856px; width: 300px; height: 76px; --sl: 26px; font-size: 47px; padding: 0 20px 0 30px; }
 #sv-c2 { left: 1460px; top: 856px; width: 200px; height: 76px; --sl: 26px; }
 #sv-logo { left: 862px; top: 792px; width: 196px; height: 174px; }
 #sv-brand { left: 766px; top: 932px; width: 400px; height: 48px; --sl: 18px; }
@@ -59,39 +71,52 @@
 
   <div id="ss-page" class="rb-page">
     <img id="ss-logo" class="rb-logo rb-logo-tight rb-pop">
-    <div id="ss-name" class="rb-plate rb-silver sl-r rb-name nm rb-slide-l" style="--d:.1s" data-fit="44,22"></div>
+    <div id="ss-name" class="rb-plate rb-silver sl-r rb-name nm rb-slide-l" style="--d:.1s" data-fit="47,22"></div>
     <div id="ss-ctry" class="rb-plate rb-silver sl-l ctry rb-slide-l" style="--d:.2s"></div>
-    <div id="ss-role" class="rb-plate rb-navy sl-r rb-gs-medium rb-slide-l" style="--d:.3s" data-fit="24,14"></div>
+    <div id="ss-role" class="rb-plate rb-navy sl-r rb-bc-regular rb-slide-l" style="--d:.3s" data-fit="29,14"></div>
   </div>
 
   <div id="sd-page" class="rb-page">
     <div id="sd-c1" class="rb-plate rb-silver sl-r ctry rb-slide-l"></div>
-    <div id="sd-n1" class="rb-plate rb-silver sl-r rb-name nm rb-slide-l" style="--d:.1s" data-fit="44,22"></div>
+    <div id="sd-n1" class="rb-plate rb-silver sl-r rb-name nm rb-slide-l" style="--d:.1s" data-fit="47,22"></div>
     <img id="sd-logo" class="rb-logo rb-logo-tight rb-pop" style="--d:.15s">
-    <div id="sd-n2" class="rb-plate rb-silver sl-l rb-name nm rb-slide-r" style="--d:.1s" data-fit="44,22"></div>
+    <div id="sd-n2" class="rb-plate rb-silver sl-l rb-name nm rb-slide-r" style="--d:.1s" data-fit="47,22"></div>
     <div id="sd-c2" class="rb-plate rb-silver sl-l ctry rb-slide-r"></div>
   </div>
 
   <div id="st-page" class="rb-page">
     <img id="st-logo" class="rb-logo rb-logo-tight rb-pop">
-    <div id="st-n1" class="rb-plate rb-navy sl-both rb-name nm rb-slide-l" style="--d:.1s" data-fit="40,20"></div>
-    <div id="st-n2" class="rb-plate rb-navy sl-both rb-name nm rb-slide-l" style="--d:.2s" data-fit="40,20"></div>
-    <div id="st-n3" class="rb-plate rb-navy sl-both rb-name nm rb-slide-l" style="--d:.3s" data-fit="40,20"></div>
+    <div id="st-n1" class="rb-plate rb-navy sl-both rb-name nm rb-slide-l" style="--d:.1s" data-fit="43,20"></div>
+    <div id="st-n2" class="rb-plate rb-navy sl-both rb-name nm rb-slide-l" style="--d:.2s" data-fit="43,20"></div>
+    <div id="st-n3" class="rb-plate rb-navy sl-both rb-name nm rb-slide-l" style="--d:.3s" data-fit="43,20"></div>
     <div id="st-c1" class="rb-chip rb-pop" style="--d:.35s"></div><div id="st-c2" class="rb-chip rb-pop" style="--d:.45s"></div><div id="st-c3" class="rb-chip rb-pop" style="--d:.55s"></div>
+  </div>
+
+  <div id="ho-page" class="rb-page">
+    <img id="ho-logo" class="rb-logo rb-logo-tight rb-pop">
+    <div id="ho-n1" class="rb-plate rb-navy sl-both rb-name nm rb-slide-l" style="--d:.1s" data-fit="43,20"></div>
+    <div id="ho-r1" class="rb-chip tl-role rb-pop" style="--d:.35s"></div>
+  </div>
+
+  <div id="ca-page" class="rb-page">
+    <img id="ca-logo" class="rb-logo rb-logo-tight rb-pop">
+    <div id="ca-n1" class="rb-plate rb-navy sl-both rb-name nm rb-slide-l" style="--d:.1s" data-fit="43,20"></div>
+    <div id="ca-n2" class="rb-plate rb-navy sl-both rb-name nm rb-slide-r" style="--d:.1s" data-fit="43,20"></div>
+    <div id="ca-r1" class="rb-chip tl-role rb-pop" style="--d:.35s"></div><div id="ca-r2" class="rb-chip tl-role rb-pop" style="--d:.45s"></div>
   </div>
 
   <div id="sf-page" class="rb-page">
     <img id="sf-logo" class="rb-logo rb-logo-tight rb-pop">
-    <div id="sf-head" class="rb-plate rb-silver sl-r rb-slide-l" style="--d:.1s" data-fit="44,22"></div>
-    <div id="sf-sub" class="rb-plate rb-navy sl-r rb-gs-medium rb-slide-l" style="--d:.25s" data-fit="28,14"></div>
+    <div id="sf-head" class="rb-plate rb-silver sl-r rb-slide-l" style="--d:.1s" data-fit="47,22"></div>
+    <div id="sf-sub" class="rb-plate rb-navy sl-r rb-bc-regular rb-slide-l" style="--d:.25s" data-fit="35,14"></div>
   </div>
 
   <div id="sv-page" class="rb-page">
     <div id="sv-c1" class="rb-plate rb-deep sl-r ctry rb-slide-l"></div>
-    <div id="sv-n1" class="rb-plate rb-navy sl-r rb-name rb-slide-l" style="--d:.08s" data-fit="34,18"></div>
+    <div id="sv-n1" class="rb-plate rb-navy sl-r rb-name rb-slide-l" style="--d:.08s" data-fit="47,18"></div>
     <div id="sv-s1" class="rb-plate rb-navy rb-mono rb-pop" style="--d:.2s"></div>
     <div id="sv-s2" class="rb-plate rb-navy rb-mono rb-pop" style="--d:.2s"></div>
-    <div id="sv-n2" class="rb-plate rb-navy sl-l rb-name rb-slide-r" style="--d:.08s" data-fit="34,18"></div>
+    <div id="sv-n2" class="rb-plate rb-navy sl-l rb-name rb-slide-r" style="--d:.08s" data-fit="47,18"></div>
     <div id="sv-c2" class="rb-plate rb-deep sl-l ctry rb-slide-r"></div>
     <div id="sv-brand" class="rb-plate rb-silver sl-both rb-pop" style="--d:.3s"></div>
     <img id="sv-fc27" class="rb-fc27"><img id="sv-ps" class="rb-ps">
@@ -106,7 +131,7 @@
 </div>
 
 <script src="/html/js/overlay-sse-shim.js"></script>
-<script src="/html/redbull/rb-core.js?v=4"></script>
+<script src="/html/redbull/rb-core.js?v=5"></script>
 <script>
 (function () {
   'use strict';
@@ -131,6 +156,19 @@
       $('st-n' + (i + 1)).innerHTML = RB.nameHTML(p); $('st-c' + (i + 1)).innerHTML = ctry(p);
     });
   }
+  // 204 Host / 205 Casters: free-typed name + role chip per slot; a slot with no name is hidden on air.
+  function talentSlot(t, n, r) {
+    t = t || {};
+    var off = !String(t.first || '').trim() && !String(t.last || '').trim();
+    n.classList.toggle('tl-off', off); r.classList.toggle('tl-off', off);
+    n.innerHTML = off ? '' : RB.nameHTML({ first: t.first || '', last: t.last || '' });
+    r.textContent = off ? '' : (t.role || '');
+  }
+  function applyHost(s) { talentSlot(s.supers && s.supers.host, $('ho-n1'), $('ho-r1')); }
+  function applyCasters(s) {
+    var C = (s.supers && s.supers.casters) || [];
+    [0, 1].forEach(function (i) { talentSlot(C[i], $('ca-n' + (i + 1)), $('ca-r' + (i + 1))); });
+  }
   function applyFree(s) { $('sf-head').textContent = s.supers.free.headline || ''; $('sf-sub').textContent = s.supers.free.sub || ''; }
   function applyVs(s) {
     var a = RB.player(s.match.p1), b = RB.player(s.match.p2);
@@ -149,6 +187,8 @@
     rb_super_single: { page: 'ss-page', apply: applySingle },
     rb_super_double: { page: 'sd-page', apply: applyDouble },
     rb_super_triple: { page: 'st-page', apply: applyTriple },
+    rb_super_host:    { page: 'ho-page', apply: applyHost },
+    rb_super_casters: { page: 'ca-page', apply: applyCasters },
     rb_super_free:   { page: 'sf-page', apply: applyFree },
     rb_vs_super:     { page: 'sv-page', apply: applyVs },
     rb_ingame:       { page: 'ig-page', apply: applyInGame },

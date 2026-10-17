@@ -120,6 +120,16 @@
         "hide": "/overlay/rb_super_triple/hide"
       },
       {
+        "name": "204 · Super Host",
+        "show": "/overlay/rb_super_host/show",
+        "hide": "/overlay/rb_super_host/hide"
+      },
+      {
+        "name": "205 · Super Casters",
+        "show": "/overlay/rb_super_casters/show",
+        "hide": "/overlay/rb_super_casters/hide"
+      },
+      {
         "name": "202 · Super Free Text",
         "show": "/overlay/rb_super_free/show",
         "hide": "/overlay/rb_super_free/hide"
@@ -182,7 +192,7 @@
         "top": 496,
         "width": 572,
         "height": 84,
-        "fontSize": 46
+        "fontSize": 52
       },
       "#cd-time": {
         "left": 748,
@@ -322,14 +332,14 @@
         "top": 136,
         "width": 438,
         "height": 88,
-        "fontSize": 46
+        "fontSize": 55
       },
       "#sc-sub": {
         "left": 390,
         "top": 224,
         "width": 410,
         "height": 64,
-        "fontSize": 30
+        "fontSize": 40
       },
       "#sc-logo": {
         "left": 1231,
@@ -499,7 +509,7 @@
         "top": 486,
         "width": 424,
         "height": 84,
-        "fontSize": 40
+        "fontSize": 52
       },
       "#mr-score": {
         "left": 740,
@@ -513,7 +523,7 @@
         "top": 486,
         "width": 424,
         "height": 84,
-        "fontSize": 40
+        "fontSize": 52
       },
       "#mr-chip-l": {
         "left": 544,
@@ -844,7 +854,7 @@
         "top": 458,
         "width": 360,
         "height": 140,
-        "fontSize": 76
+        "fontSize": 87
       },
       "#br-fc27": {
         "left": 1590,
@@ -930,14 +940,14 @@
         "top": 132,
         "width": 402,
         "height": 88,
-        "fontSize": 46
+        "fontSize": 55
       },
       "#lb-sub": {
         "left": 516,
         "top": 220,
         "width": 404,
         "height": 64,
-        "fontSize": 28
+        "fontSize": 40
       },
       "#lb-heads": {
         "left": 996,
@@ -1022,14 +1032,14 @@
         "top": 484,
         "width": 780,
         "height": 104,
-        "fontSize": 62
+        "fontSize": 64
       },
       "#wn-sub": {
         "left": 724,
         "top": 590,
         "width": 660,
         "height": 84,
-        "fontSize": 36
+        "fontSize": 52
       },
       "#wn-fc27": {
         "left": 750,
@@ -1218,21 +1228,21 @@
         "top": 488,
         "width": 340,
         "height": 50,
-        "fontSize": 26
+        "fontSize": 31
       },
       "#s3-title-l": {
         "left": 310,
         "top": 928,
         "width": 340,
         "height": 50,
-        "fontSize": 26
+        "fontSize": 31
       },
       "#s3-title-r": {
         "left": 960,
         "top": 928,
         "width": 340,
         "height": 50,
-        "fontSize": 26
+        "fontSize": 31
       },
       "#s3-fc27": {
         "left": 1590,
@@ -1387,7 +1397,7 @@
         "top": 400,
         "width": 246,
         "height": 80,
-        "fontSize": 40
+        "fontSize": 50
       },
       "#lbk-vs": {
         "left": 152,
@@ -1401,7 +1411,7 @@
         "top": 568,
         "width": 246,
         "height": 78,
-        "fontSize": 40
+        "fontSize": 50
       },
       "#lbk-fc27": {
         "left": 110,
@@ -1471,7 +1481,7 @@
         "top": 898,
         "width": 218,
         "height": 46,
-        "fontSize": 24
+        "fontSize": 29
       }
     },
     "showFn": "rbEdit_super_single"
@@ -1640,6 +1650,122 @@
     },
     "showFn": "rbEdit_super_triple"
   },
+  "rb_super_host": {
+    "label": "Super Host · Supers",
+    "file": "redbull-supers.html",
+    "styleFile": "redbull_supers",
+    "defaultsKey": "sb_edit_defaults_rb_super_host",
+    "elements": [
+      {
+        "group": "Logo",
+        "id": "#ho-logo",
+        "name": "Logo"
+      },
+      {
+        "group": "Name Plate",
+        "id": "#ho-n1",
+        "name": "Name Plate"
+      },
+      {
+        "group": "Role Chip",
+        "id": "#ho-r1",
+        "name": "Role Chip"
+      }
+    ],
+    "defaults": {
+      "#ho-logo": {
+        "left": 112,
+        "top": 806,
+        "width": 210,
+        "height": 187
+      },
+      "#ho-n1": {
+        "left": 296,
+        "top": 874,
+        "width": 480,
+        "height": 70,
+        "fontSize": 44
+      },
+      "#ho-r1": {
+        "left": 304,
+        "top": 946,
+        "width": 164,
+        "height": 34,
+        "fontSize": 26
+      }
+    },
+    "showFn": "rbEdit_super_host"
+  },
+  "rb_super_casters": {
+    "label": "Super Casters · Supers",
+    "file": "redbull-supers.html",
+    "styleFile": "redbull_supers",
+    "defaultsKey": "sb_edit_defaults_rb_super_casters",
+    "elements": [
+      {
+        "group": "Logo",
+        "id": "#ca-logo",
+        "name": "Logo"
+      },
+      {
+        "group": "Name Plate 1",
+        "id": "#ca-n1",
+        "name": "Name Plate 1"
+      },
+      {
+        "group": "Name Plate 2",
+        "id": "#ca-n2",
+        "name": "Name Plate 2"
+      },
+      {
+        "group": "Role Chip 1",
+        "id": "#ca-r1",
+        "name": "Role Chip 1"
+      },
+      {
+        "group": "Role Chip 2",
+        "id": "#ca-r2",
+        "name": "Role Chip 2"
+      }
+    ],
+    "defaults": {
+      "#ca-logo": {
+        "left": 855,
+        "top": 806,
+        "width": 210,
+        "height": 187
+      },
+      "#ca-n1": {
+        "left": 355,
+        "top": 874,
+        "width": 480,
+        "height": 70,
+        "fontSize": 44
+      },
+      "#ca-n2": {
+        "left": 1085,
+        "top": 874,
+        "width": 480,
+        "height": 70,
+        "fontSize": 44
+      },
+      "#ca-r1": {
+        "left": 363,
+        "top": 946,
+        "width": 164,
+        "height": 34,
+        "fontSize": 26
+      },
+      "#ca-r2": {
+        "left": 1393,
+        "top": 946,
+        "width": 164,
+        "height": 34,
+        "fontSize": 26
+      }
+    },
+    "showFn": "rbEdit_super_casters"
+  },
   "rb_super_free": {
     "label": "Super Free Text · Supers",
     "file": "redbull-supers.html",
@@ -1674,14 +1800,14 @@
         "top": 820,
         "width": 844,
         "height": 76,
-        "fontSize": 44
+        "fontSize": 47
       },
       "#sf-sub": {
         "left": 240,
         "top": 896,
         "width": 1010,
         "height": 56,
-        "fontSize": 28
+        "fontSize": 35
       }
     },
     "showFn": "rbEdit_super_free"
@@ -1756,7 +1882,7 @@
         "top": 856,
         "width": 300,
         "height": 76,
-        "fontSize": 34
+        "fontSize": 47
       },
       "#sv-s1": {
         "left": 754,
@@ -1783,7 +1909,7 @@
         "top": 856,
         "width": 300,
         "height": 76,
-        "fontSize": 34
+        "fontSize": 47
       },
       "#sv-c2": {
         "left": 1460,

@@ -251,14 +251,14 @@ A self-contained project built from `projects/redbull/assets/Wings-Cup-Broadcast
 - **`/html/redbull/*.js` is served with a 1-day browser cache** (server.js only no-caches `.html`/`.css`/
   `/html/js/`), so bump the `?v=N` on the `rb-core.js` / `rb-dashboard-config.js` script tags when you change
   them, or open OBS/vMix sources keep the old copy. Players without an uploaded photo show a silhouette.
-- **Typography (matches the client's reference frames):** General Sans (`/fonts/GeneralSans-*.otf`, family
-  `'RB General Sans'` in `rb.css`) for everything — Semibold default (body), `.fn` first names Medium,
-  `.ln` surnames + `.ctry`/`.rb-chip` country codes Bold, `.rb-gs-bold` for VS, **`.rb-mono` (Azeret Mono ExtraBold) for
-  every number** — countdown, scores, schedule times, leaderboard stats (per the client's typography sheet),
-  `.rb-gs-medium` for sub-lines. **Exception: 108 Leaderboard stays Futura for Red Bull Cond Bold** (`#lb-page`
-  rule in redbull-fullscreen.html). General Sans is much wider than the old condensed face, so every slanted
-  plate (`sl-*`) needs horizontal padding ≥ its `--sl`, or shrink-to-fit sizes the text to the full box and
-  the slant then hides the first/last letters.
+- **Typography follows the client sheet** (fonts confirmed against those embedded in the design-system PDF):
+  **Bull Condensed** (`/fonts/BullCondensed-{Regular,Bold}.ttf`, family `'RB Bull Cond'`) is the body default —
+  Bold for plate titles, labels, surnames (`.ln`), country codes; Regular (`.fn`, `.rb-bc-regular`) for first names
+  and sub-plates. **Apotek** Black (`.rb-apotek-black`: VS, bracket WINNER) / Semibold (`.rb-apotek-semi`:
+  CHAMPIONSHIP WINNER, `.brl` bracket rounds). **Azeret Mono** (`.rb-mono`) for every number. **Exception: the 102
+  Holding headline/sub-line stay General Sans** (`.rb-gs-semibold`/`.rb-gs-medium`, user's choice). Text maxima
+  (`data-fit`) are ~62% of each plate's height; slanted plates (`sl-*`) need horizontal padding ≥ `--sl` or the
+  slant hides the first/last letters.
 - `routes/*.js` / `lib/*.js` changes here need a server restart like everything else.
 
 ## ENTVC.html — the EN broadcast mirror of Waiting TVC/Lobby

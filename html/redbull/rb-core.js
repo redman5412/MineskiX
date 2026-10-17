@@ -107,7 +107,7 @@
   // Fonts load lazily on first use — fit measurements taken before that run against fallback glyphs.
   RB.fontsReady = function () {
     if (!document.fonts || !document.fonts.load) return Promise.resolve();
-    return Promise.all(['500 20px "RB General Sans"', '600 20px "RB General Sans"', '700 20px "RB General Sans"', '700 20px "RB Cond"', '800 20px "RB Mono"']
+    return Promise.all(['400 20px "RB Bull Cond"', '700 20px "RB Bull Cond"', '900 20px "RB Apotek"', '600 20px "RB Apotek"', '800 20px "RB Mono"', '500 20px "RB General Sans"', '600 20px "RB General Sans"']
       .map(function (f) { return document.fonts.load(f).catch(function () {}); }));
   };
 
