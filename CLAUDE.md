@@ -250,8 +250,14 @@ A self-contained project built from `projects/redbull/assets/Wings-Cup-Broadcast
   (Winner + all Supers), where the full glow would overlap neighbouring plates.
 - **`/html/redbull/*.js` is served with a 1-day browser cache** (server.js only no-caches `.html`/`.css`/
   `/html/js/`), so bump the `?v=N` on the `rb-core.js` / `rb-dashboard-config.js` script tags when you change
-  them, or open OBS/vMix sources keep the old copy. Players without an uploaded photo show a silhouette. Only `FuturaforRedBull-CondBold`
-  exists in the font folder, so "Bull Condensed Regular" (first names) renders in CondBold.
+  them, or open OBS/vMix sources keep the old copy. Players without an uploaded photo show a silhouette.
+- **Typography (matches the client's reference frames):** General Sans (`/fonts/GeneralSans-*.otf`, family
+  `'RB General Sans'` in `rb.css`) for everything — Semibold default (body), `.fn` first names Medium,
+  `.ln` surnames + `.ctry`/`.rb-chip` country codes Bold, `.rb-gs-bold` for big numbers (timer, scores, VS),
+  `.rb-gs-medium` for sub-lines. **Exception: 108 Leaderboard stays Futura for Red Bull Cond Bold** (`#lb-page`
+  rule in redbull-fullscreen.html). General Sans is much wider than the old condensed face, so every slanted
+  plate (`sl-*`) needs horizontal padding ≥ its `--sl`, or shrink-to-fit sizes the text to the full box and
+  the slant then hides the first/last letters.
 - `routes/*.js` / `lib/*.js` changes here need a server restart like everything else.
 
 ## ENTVC.html — the EN broadcast mirror of Waiting TVC/Lobby
