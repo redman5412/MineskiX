@@ -38,7 +38,7 @@
 .sc-pl   { left: 68px; width: 338px; background: var(--rb-navy-plate); gap: 14px; font-size: 38px; clip-path: polygon(0 0, 100% 0, calc(100% - 8px) 100%, 0 100%); }
 .sc-vs   { left: 406px; width: 78px; background: var(--rb-navy-deep); color: #cfd6ff; font-size: 34px; }
 .sc-pr   { left: 484px; width: 322px; background: var(--rb-navy-plate); gap: 14px; font-size: 38px; clip-path: polygon(8px 0, 100% 0, 100% 100%, 0 100%); }
-.sc-time { left: 806px; width: 154px; background: var(--rb-silver); color: var(--rb-navy); font-size: 34px; letter-spacing: 1px; }
+.sc-time { left: 806px; width: 154px; background: var(--rb-silver); color: var(--rb-navy); font-family: 'RB Mono', monospace; font-weight: 800; font-size: 34px; letter-spacing: 1px; }
 .sc-row .rb-flag { width: 64px; height: 44px; }
 .fit-inline { flex: 1; min-width: 0; overflow: hidden; white-space: nowrap; text-align: center; }
 
@@ -115,7 +115,7 @@
 .lb-rank { left: 0; width: 76px; justify-content: center; background: var(--rb-silver); color: var(--rb-navy); font-size: 38px; }
 .lb-name { left: 76px; width: 416px; background: var(--rb-navy-plate); gap: 16px; padding-left: 12px; font-size: 38px; clip-path: polygon(0 0, 100% 0, calc(100% - 8px) 100%, 0 100%); }
 .lb-name .rb-flag { width: 62px; height: 42px; }
-.lb-stat { width: 70px; justify-content: center; background: var(--rb-silver); color: var(--rb-navy); font-size: 32px; clip-path: polygon(8px 0, 100% 0, calc(100% - 8px) 100%, 0 100%); }
+.lb-stat { width: 70px; justify-content: center; background: var(--rb-silver); color: var(--rb-navy); font-family: 'RB Mono', monospace; font-weight: 800; font-size: 32px; clip-path: polygon(8px 0, 100% 0, calc(100% - 8px) 100%, 0 100%); }
 
 /* 110 WINNER */
 #wn-logo  { left: 500px; top: 420px; width: 290px; height: 258px; z-index: 3; }
@@ -167,7 +167,7 @@
   <div id="cd-page" class="rb-page">
     <img id="cd-logo" class="rb-logo logo-c rb-pop">
     <div id="cd-label" class="rb-plate rb-navy sl-r rb-gs-medium rb-slide-l" style="--d:.15s" data-fit="46,24"></div>
-    <div id="cd-time" class="rb-plate rb-silver sl-r rb-gs-bold rb-slide-r" style="--d:.25s" data-fit="118,60"></div>
+    <div id="cd-time" class="rb-plate rb-silver sl-r rb-mono rb-slide-r" style="--d:.25s" data-fit="118,60"></div>
     <img id="cd-fc27" class="rb-fc27 mk-b-fc"><img id="cd-ps" class="rb-ps mk-b-ps">
   </div>
 
@@ -202,7 +202,7 @@
   <div id="mr-page" class="rb-page">
     <img id="mr-logo" class="rb-logo logo-c rb-pop">
     <div id="mr-name-l" class="rb-plate rb-navy sl-r rb-name rb-slide-l" style="--d:.2s" data-fit="40,20"></div>
-    <div id="mr-score" class="rb-plate rb-gs-bold rb-pop" style="--d:.35s" data-fit="104,56"></div>
+    <div id="mr-score" class="rb-plate rb-mono rb-pop" style="--d:.35s" data-fit="104,56"></div>
     <div id="mr-name-r" class="rb-plate rb-navy sl-l rb-name rb-slide-r" style="--d:.2s" data-fit="40,20"></div>
     <div id="mr-chip-l" class="rb-chip rb-pop" style="--d:.4s"></div><div id="mr-chip-r" class="rb-chip rb-pop" style="--d:.4s"></div>
     <img id="mr-fc27" class="rb-fc27 mk-b-fc"><img id="mr-ps" class="rb-ps mk-b-ps">
@@ -307,7 +307,7 @@
 </div>
 
 <script src="/html/js/overlay-sse-shim.js"></script>
-<script src="/html/redbull/rb-core.js?v=3"></script>
+<script src="/html/redbull/rb-core.js?v=4"></script>
 <script>
 (function () {
   'use strict';

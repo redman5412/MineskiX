@@ -253,7 +253,8 @@ A self-contained project built from `projects/redbull/assets/Wings-Cup-Broadcast
   them, or open OBS/vMix sources keep the old copy. Players without an uploaded photo show a silhouette.
 - **Typography (matches the client's reference frames):** General Sans (`/fonts/GeneralSans-*.otf`, family
   `'RB General Sans'` in `rb.css`) for everything — Semibold default (body), `.fn` first names Medium,
-  `.ln` surnames + `.ctry`/`.rb-chip` country codes Bold, `.rb-gs-bold` for big numbers (timer, scores, VS),
+  `.ln` surnames + `.ctry`/`.rb-chip` country codes Bold, `.rb-gs-bold` for VS, **`.rb-mono` (Azeret Mono ExtraBold) for
+  every number** — countdown, scores, schedule times, leaderboard stats (per the client's typography sheet),
   `.rb-gs-medium` for sub-lines. **Exception: 108 Leaderboard stays Futura for Red Bull Cond Bold** (`#lb-page`
   rule in redbull-fullscreen.html). General Sans is much wider than the old condensed face, so every slanted
   plate (`sl-*`) needs horizontal padding ≥ its `--sl`, or shrink-to-fit sizes the text to the full box and

@@ -5,6 +5,7 @@
 @font-face { font-family: 'RB Cond'; font-weight: 700; src: url('/projects/redbull/fonts/RedBull_FuturaforRedBull_MID-020261_D-016258/Font_Files/Web_Fonts/WOFF2/FuturaforRedBull-CondBold.woff2') format('woff2'); font-display: block; }
 @font-face { font-family: 'RB General Sans'; font-weight: 600; src: url('/fonts/GeneralSans-Semibold.otf') format('opentype'); font-display: block; }
 @font-face { font-family: 'RB General Sans'; font-weight: 700; src: url('/fonts/GeneralSans-Bold.otf') format('opentype'); font-display: block; }
+@font-face { font-family: 'RB Mono'; font-weight: 800; src: url('/projects/redbull/fonts/azeret-mono/static/AzeretMono-ExtraBold.ttf') format('truetype'); font-display: block; }
 @font-face { font-family: 'RB General Sans'; font-weight: 500; src: url('/fonts/GeneralSans-Medium.otf') format('opentype'); font-display: block; }
 
 :root {
@@ -67,7 +68,8 @@ body { font-family: 'RB General Sans', 'RB Cond', sans-serif; font-weight: 600; 
 .rb-logo { position: absolute; object-fit: contain; }
 .rb-gs-semibold { font-family: 'RB General Sans', 'RB Cond', sans-serif; font-weight: 600; }
 .rb-gs-medium { font-family: 'RB General Sans', 'RB Cond', sans-serif; font-weight: 500; }
-.rb-gs-bold { font-family: 'RB General Sans', 'RB Cond', sans-serif; font-weight: 700; }   /* big numbers: timer, scores, VS */
+.rb-gs-bold { font-family: 'RB General Sans', 'RB Cond', sans-serif; font-weight: 700; }   /* VS */
+.rb-mono { font-family: 'RB Mono', monospace; font-weight: 800; }   /* every number: countdown, scores, times, stats (client typography sheet) */
 .ctry, .rb-chip { font-weight: 700; }   /* country codes */
 .rb-fc27, .rb-ps { position: absolute; object-fit: contain; }
 
