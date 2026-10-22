@@ -54,9 +54,6 @@
 #sv-n2 { left: 1166px; top: 856px; width: 300px; height: 76px; --sl: 26px; font-size: 47px; padding: 0 20px 0 30px; }
 #sv-c2 { left: 1460px; top: 856px; width: 200px; height: 76px; --sl: 26px; }
 #sv-logo { left: 862px; top: 792px; width: 196px; height: 174px; }
-#sv-brand { left: 766px; top: 932px; width: 400px; height: 48px; --sl: 18px; }
-#sv-fc27 { left: 800px; top: 938px; width: 150px; height: 33px; filter: brightness(.18); }
-#sv-ps { left: 980px; top: 936px; width: 130px; height: 39px; filter: brightness(.18); }
 /* IN-GAME FRAME */
 .igbox { position: absolute; border: 5px solid #1a2bd9; background: transparent; width: 326px; height: 170px; box-shadow: 0 0 0 1px rgba(0,0,40,.35); }
 #ig-box-l { left: 100px; top: 792px; } #ig-box-r { left: 1496px; top: 792px; }
@@ -118,8 +115,6 @@
     <div id="sv-s2" class="rb-plate rb-navy rb-mono rb-pop" style="--d:.2s"></div>
     <div id="sv-n2" class="rb-plate rb-navy sl-l rb-name rb-slide-r" style="--d:.08s" data-fit="47,18"></div>
     <div id="sv-c2" class="rb-plate rb-deep sl-l ctry rb-slide-r"></div>
-    <div id="sv-brand" class="rb-plate rb-silver sl-both rb-pop" style="--d:.3s"></div>
-    <img id="sv-fc27" class="rb-fc27"><img id="sv-ps" class="rb-ps">
     <img id="sv-logo" class="rb-logo rb-logo-tight rb-pop" style="--d:.15s">
   </div>
 
@@ -175,7 +170,6 @@
     $('sv-c1').innerHTML = ctry(a); $('sv-n1').innerHTML = RB.nameHTML(a);
     $('sv-s1').textContent = z(s.match.score1); $('sv-s2').textContent = z(s.match.score2);
     $('sv-n2').innerHTML = RB.nameHTML(b); $('sv-c2').innerHTML = ctry(b);
-    $('sv-brand').innerHTML = '';
   }
   function applyInGame(s) {
     var a = RB.player(s.match.p1), b = RB.player(s.match.p2);

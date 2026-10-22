@@ -21,6 +21,11 @@
         "hide": "/overlay/rb_countdown/hide"
       },
       {
+        "name": "KV · KV Loop",
+        "show": "/overlay/rb_kvloop/show",
+        "hide": "/overlay/rb_kvloop/hide"
+      },
+      {
         "name": "102 · Holding Page",
         "show": "/overlay/rb_holding/show",
         "hide": "/overlay/rb_holding/hide"
@@ -215,6 +220,50 @@
       }
     },
     "showFn": "rbEdit_countdown"
+  },
+  "rb_kvloop": {
+    "label": "KV Loop · Full Screen",
+    "file": "redbull-fullscreen.html",
+    "styleFile": "redbull_fullscreen",
+    "defaultsKey": "sb_edit_defaults_rb_kvloop",
+    "elements": [
+      {
+        "group": "Logo",
+        "id": "#kv-logo",
+        "name": "Logo"
+      },
+      {
+        "group": "FC27 Mark",
+        "id": "#kv-fc27",
+        "name": "FC27 Mark"
+      },
+      {
+        "group": "PlayStation Mark",
+        "id": "#kv-ps",
+        "name": "PlayStation Mark"
+      }
+    ],
+    "defaults": {
+      "#kv-logo": {
+        "left": 518,
+        "top": 195,
+        "width": 883,
+        "height": 690
+      },
+      "#kv-fc27": {
+        "left": 750,
+        "top": 914,
+        "width": 180,
+        "height": 40
+      },
+      "#kv-ps": {
+        "left": 1004,
+        "top": 908,
+        "width": 160,
+        "height": 48
+      }
+    },
+    "showFn": "rbEdit_kvloop"
   },
   "rb_holding": {
     "label": "Holding Page · Full Screen",
@@ -1852,21 +1901,6 @@
         "group": "Country Plate (Right)",
         "id": "#sv-c2",
         "name": "Country Plate (Right)"
-      },
-      {
-        "group": "Brand Plate",
-        "id": "#sv-brand",
-        "name": "Brand Plate"
-      },
-      {
-        "group": "FC27 Mark",
-        "id": "#sv-fc27",
-        "name": "FC27 Mark"
-      },
-      {
-        "group": "PlayStation Mark",
-        "id": "#sv-ps",
-        "name": "PlayStation Mark"
       }
     ],
     "defaults": {
@@ -1917,24 +1951,6 @@
         "width": 200,
         "height": 76,
         "fontSize": 40
-      },
-      "#sv-brand": {
-        "left": 766,
-        "top": 932,
-        "width": 400,
-        "height": 48
-      },
-      "#sv-fc27": {
-        "left": 800,
-        "top": 938,
-        "width": 150,
-        "height": 33
-      },
-      "#sv-ps": {
-        "left": 980,
-        "top": 936,
-        "width": 130,
-        "height": 39
       }
     },
     "showFn": "rbEdit_vs_super"

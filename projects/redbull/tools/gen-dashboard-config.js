@@ -11,6 +11,7 @@ const LOGO='Logo', FC='FC27 Mark', PS='PlayStation Mark';
 // [id, human name, 'block' => position only (children are fixed-size)]
 const SCENES = [
   { key: 'rb_countdown', code: '101', name: 'Countdown', fn: 'rbEdit_countdown', els: [['cd-logo',LOGO],['cd-label','Label Plate'],['cd-time','Time Plate'],['cd-fc27',FC],['cd-ps',PS]] },
+  { key: 'rb_kvloop', code: 'KV', name: 'KV Loop', fn: 'rbEdit_kvloop', els: [['kv-logo',LOGO],['kv-fc27',FC],['kv-ps',PS]] },
   { key: 'rb_holding', code: '102', name: 'Holding Page', fn: 'rbEdit_holding', els: [['hp-logo',LOGO],['hp-title','Headline Plate'],['hp-sub','Sub-line Plate'],['hp-fc27',FC],['hp-ps',PS]] },
   { key: 'rb_schedule', code: '106', name: 'Days Schedule', fn: 'rbEdit_schedule', els: [['sc-title','Title Plate'],['sc-sub','Sub Plate'],['sc-logo',LOGO],['sc-tab','Matches Tab'],['sc-rows','Match Rows (block)','block'],['sc-fc27',FC],['sc-ps',PS]] },
   { key: 'rb_matchid', code: '103a', name: 'Match ID', fn: 'rbEdit_matchid', els: [['mi-logo',LOGO],['mi-bar-l','Name Bar (Left)'],['mi-vs','VS'],['mi-bar-r','Name Bar (Right)'],['mi-fc27',FC],['mi-ps',PS]] },
@@ -33,7 +34,7 @@ const SUPERS = [
   { key: 'rb_super_host', code: '204', name: 'Super Host', fn: 'rbEdit_super_host', els: [['ho-logo',LOGO],['ho-n1','Name Plate'],['ho-r1','Role Chip']] },
   { key: 'rb_super_casters', code: '205', name: 'Super Casters', fn: 'rbEdit_super_casters', els: [['ca-logo',LOGO],['ca-n1','Name Plate 1'],['ca-n2','Name Plate 2'],['ca-r1','Role Chip 1'],['ca-r2','Role Chip 2']] },
   { key: 'rb_super_free', code: '202', name: 'Super Free Text', fn: 'rbEdit_super_free', els: [['sf-logo',LOGO],['sf-head','Headline Plate'],['sf-sub','Sub-line Plate']] },
-  { key: 'rb_vs_super', code: '203', name: 'VS Super', fn: 'rbEdit_vs_super', els: [['sv-c1','Country Plate (Left)'],['sv-n1','Name Plate (Left)'],['sv-s1','Score (Left)'],['sv-logo',LOGO],['sv-s2','Score (Right)'],['sv-n2','Name Plate (Right)'],['sv-c2','Country Plate (Right)'],['sv-brand','Brand Plate'],['sv-fc27',FC],['sv-ps',PS]] },
+  { key: 'rb_vs_super', code: '203', name: 'VS Super', fn: 'rbEdit_vs_super', els: [['sv-c1','Country Plate (Left)'],['sv-n1','Name Plate (Left)'],['sv-s1','Score (Left)'],['sv-logo',LOGO],['sv-s2','Score (Right)'],['sv-n2','Name Plate (Right)'],['sv-c2','Country Plate (Right)']] },
   { key: 'rb_ingame', code: 'Frame', name: 'Player In-Game', fn: 'rbEdit_ingame', els: [['ig-box-l','Cam Box (Left)'],['ig-box-r','Cam Box (Right)'],['ig-name-l','Name Tab (Left)'],['ig-ctry-l','Country Tab (Left)'],['ig-ctry-r','Country Tab (Right)'],['ig-name-r','Name Tab (Right)']] },
 ];
 

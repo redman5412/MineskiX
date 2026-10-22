@@ -95,7 +95,7 @@
   },
   "holding": {
     "title": "lorem ipsum dolor sit",
-    "sub": "lorem ipsum dolor sit amet consectetuer"
+    "sub": "Lorem ipsum dolor sit amet, consectetur adipiscing"
   },
   "schedule": {
     "title": "DAYS SCHEDULE",
@@ -343,6 +343,23 @@
     "free": {
       "headline": "HEADLINE GOES HERE",
       "sub": "Supporting line goes here."
-    }
+    },
+    "host": {
+      "first": "HOST",
+      "last": "NAME",
+      "role": "HOST"
+    },
+    "casters": [
+      {
+        "first": "CASTER",
+        "last": "ONE",
+        "role": "CASTER"
+      },
+      {
+        "first": "CASTER",
+        "last": "TWO",
+        "role": "CASTER"
+      }
+    ]
   }
 }

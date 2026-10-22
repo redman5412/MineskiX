@@ -256,7 +256,7 @@ A self-contained project built from `projects/redbull/assets/Wings-Cup-Broadcast
   Bold for plate titles, labels, surnames (`.ln`), country codes; Regular (`.fn`, `.rb-bc-regular`) for first names
   and sub-plates. **Apotek** Black (`.rb-apotek-black`: VS, bracket WINNER) / Semibold (`.rb-apotek-semi`:
   CHAMPIONSHIP WINNER, `.brl` bracket rounds). **Azeret Mono** (`.rb-mono`) for every number. **Exception: the 102
-  Holding headline/sub-line stay General Sans** (`.rb-gs-semibold`/`.rb-gs-medium`, user's choice). Text maxima
+  Holding headline/sub-line stay General Sans** (`.rb-gs-semibold` headline / `.rb-gs-regular` sub-line at 1px letter-spacing, matched to the client sample — user's choice). Text maxima
   (`data-fit`) are ~62% of each plate's height; slanted plates (`sl-*`) need horizontal padding ≥ `--sl` or the
   slant hides the first/last letters.
 - `routes/*.js` / `lib/*.js` changes here need a server restart like everything else.

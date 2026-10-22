@@ -182,21 +182,19 @@
       "top": "654px",
       "width": "1320px",
       "height": "96px",
-      "fontSize": "34px"
+      "fontSize": "29px"
     },
     "#hp-fc27": {
       "left": "750px",
       "top": "914px",
       "width": "180px",
-      "height": "40px",
-      "asset": "/projects/redbull/assets/brand/eafc27.png"
+      "height": "40px"
     },
     "#hp-ps": {
       "left": "1004px",
       "top": "908px",
       "width": "160px",
-      "height": "48px",
-      "asset": "/projects/redbull/assets/brand/ps-tournaments.png"
+      "height": "48px"
     },
     "#mi-logo": {
       "left": "686px",
