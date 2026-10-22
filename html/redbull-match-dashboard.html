@@ -33,6 +33,26 @@ input:focus, select:focus { border-color: #5566cc; }
 table { width: 100%; border-collapse: collapse; } th { font-size: 10px; text-transform: uppercase; letter-spacing: .1em; color: #555; text-align: left; padding: 4px 6px; font-weight: 500; }
 td { padding: 3px 4px; vertical-align: middle; } td.n { width: 28px; color: #555; font-size: 12px; text-align: right; padding-right: 8px; }
 .thumb { width: 38px; height: 38px; border-radius: 6px; object-fit: cover; background: #0f0f18; border: 1px solid #2a2a3a; display: block; }
+.photo-box { width: 52px; height: 52px; border-radius: 6px; background: #3a3a55; border: 1px solid #2a2a3a; display: flex; align-items: center; justify-content: center; cursor: pointer; flex-shrink: 0; overflow: hidden; font-size: 10px; color: #8888aa; }
+.photo-box img { width: 100%; height: 100%; object-fit: contain; object-position: center bottom; }
+.photo-box.empty { background: #0f0f18; border-style: dashed; }
+.photo-box.drag { border-color: #88aaff; border-style: solid; background: #1a2030; }
+.photo-status { font-size: 11px; color: #888; }
+/* crop editor (Roster → Crop): same box ratio + img CSS as the overlays' .rb-photo, so what you see is what airs */
+#crop-modal { position: fixed; inset: 0; background: rgba(0,0,0,.72); display: flex; align-items: center; justify-content: center; z-index: 50; }
+#crop-modal .cm { background: #15151f; border: 1px solid #2a2a3a; border-radius: 10px; padding: 18px; width: 470px; }
+#crop-modal h3 { margin: 0 0 12px; font-size: 14px; color: #ddd; font-weight: 600; }
+.cm-stage { position: relative; width: 420px; height: 400px; margin: 0 auto; overflow: hidden; cursor: grab; touch-action: none;
+  background: #1430c8 linear-gradient(180deg, #0b1f9e, #1d4ae0); border: 1px solid #333355; }
+.cm-stage.drag { cursor: grabbing; }
+.cm-stage img { position: absolute; left: 0; top: 0; width: 100%; height: 100%; object-fit: contain; object-position: center bottom; transform-origin: 50% 0; pointer-events: none; user-select: none; }
+.cm-guide { position: absolute; left: 0; right: 0; border-top: 1px dashed rgba(255,255,255,.45); pointer-events: none; }
+.cm-guide span { position: absolute; right: 4px; top: -15px; font-size: 10px; color: rgba(255,255,255,.7); }
+.cm-plate { width: 420px; height: 52px; margin: 0 auto 14px; background: linear-gradient(90deg,#0a0056,#1a1a9c); color: #fff; display: flex; align-items: center; justify-content: center; font: 600 20px 'Segoe UI'; letter-spacing: 1px; text-transform: uppercase; }
+#crop-modal .row > label { width: 60px; }
+#crop-modal input[type=range] { flex: 1; }
+#crop-modal .val { width: 48px; font-size: 12px; color: #aaa; text-align: right; }
+.cm-btns { display: flex; gap: 8px; justify-content: flex-end; margin-top: 12px; }
 .stat { width: 62px !important; text-align: center; }
 .score { font: 700 34px 'Segoe UI'; color: #fff; width: 54px; text-align: center; }
 .timer { font: 700 40px 'Consolas', monospace; color: #fff; letter-spacing: 2px; }
@@ -126,17 +146,136 @@ td { padding: 3px 4px; vertical-align: middle; } td.n { width: 28px; color: #555
   var current = 'roster';
 
   function secRoster(host) {
-    var p = panel('Roster — 16 players', 'Every graphic picks its players from this list (the bracket is 16 players: 8 University League + 8 Open League). No player photos are used in this project.');
-    var t = el('table'); t.innerHTML = '<tr><th></th><th>First name</th><th>Surname</th><th>Country</th></tr>';
+    var p = panel('Roster — 16 players', 'Every graphic picks its players from this list (the bracket is 16 players: 8 University League + 8 Open League). Photos: transparent-background PNG/WebP cut-outs, head and shoulders, used on Match ID, Match Results, Top 16/8/4, Winner and the VS Super — click Upload or drop a file onto the photo box. Players without a photo show a black silhouette.');
+    var t = el('table'); t.innerHTML = '<tr><th></th><th>First name</th><th>Surname</th><th>Country</th><th>Photo</th></tr>';
     S.players.forEach(function (pl, i) {
       var tr = el('tr'); tr.appendChild(el('td', 'n', i + 1));
       var td1 = el('td'); td1.appendChild(tInput(pl.first, function (v) { S.players[i].first = v; save({ players: S.players }); })); tr.appendChild(td1);
       var td2 = el('td'); td2.appendChild(tInput(pl.last, function (v) { S.players[i].last = v; save({ players: S.players }); })); tr.appendChild(td2);
       var td3 = el('td'); var sel = el('select', '', countries.map(function (c) { return '<option value="' + c.iso2 + '"' + (c.iso2 === pl.country ? ' selected' : '') + '>' + esc(c.code + ' — ' + c.name) + '</option>'; }).join(''));
       sel.onchange = function () { S.players[i].country = sel.value; save({ players: S.players }); }; td3.appendChild(sel); tr.appendChild(td3);
+      tr.appendChild(photoCell(pl, i));
       t.appendChild(tr);
     });
     p.appendChild(t); host.appendChild(p);
+  }
+
+  /* Roster photo: upload (button or drag-and-drop onto the box) → /api/projects/redbull/assets/players
+     (same per-project asset store as the Edit tab's uploads) → players[i].photo = the returned URL. */
+  /* Huge camera exports (e.g. 2000x3700, 8 MB) are slow for OBS/vMix to decode — 16 at once on Top 16.
+     Cap the longest side at 2000 px before uploading (still plenty to zoom into with Crop); keeps PNG alpha. */
+  var PHOTO_MAX = 2000;
+  function shrinkPhoto(file) {
+    return new Promise(function (resolve) {
+      var url = URL.createObjectURL(file), im = new Image();
+      im.onload = function () {
+        URL.revokeObjectURL(url);
+        var k = PHOTO_MAX / Math.max(im.naturalWidth, im.naturalHeight);
+        if (k >= 1) return resolve(file);
+        var cv = document.createElement('canvas');
+        cv.width = Math.round(im.naturalWidth * k); cv.height = Math.round(im.naturalHeight * k);
+        var cx = cv.getContext('2d'); cx.imageSmoothingQuality = 'high'; cx.drawImage(im, 0, 0, cv.width, cv.height);
+        var type = file.type === 'image/jpeg' ? 'image/jpeg' : 'image/png';
+        cv.toBlob(function (b) { resolve(b ? new File([b], file.name.replace(/\.\w+$/, '') + (type === 'image/png' ? '.png' : '.jpg'), { type: type }) : file); }, type, 0.92);
+      };
+      im.onerror = function () { URL.revokeObjectURL(url); resolve(file); };
+      im.src = url;
+    });
+  }
+
+  function photoCell(pl, i) {
+    var td = el('td'); var wrap = el('div', 'row'); wrap.style.margin = 0;
+    var box = el('div', 'photo-box' + (pl.photo ? '' : ' empty'));
+    box.title = 'Drop a PNG/WebP here';
+    if (pl.photo) { var im = el('img'); im.src = pl.photo; box.appendChild(im); } else box.textContent = 'none';
+    var up = el('input'); up.type = 'file'; up.accept = 'image/png,image/webp,image/jpeg'; up.style.display = 'none';
+    var status = el('span', 'photo-status');
+    function send(file) {
+      if (!file) return;
+      if (!/^image\/(png|webp|jpeg)$/.test(file.type)) { status.textContent = 'PNG, WebP or JPEG only'; return; }
+      status.textContent = 'Uploading…';
+      shrinkPhoto(file).then(upload);
+    }
+    function upload(file) {
+      var fd = new FormData(); fd.append('file', file);
+      fetch('/api/projects/redbull/assets/players', { method: 'POST', body: fd })
+        .then(function (r) { return r.json(); })
+        .then(function (d) {
+          if (!d.url) { status.textContent = d.error || 'Upload failed'; return; }
+          S.players[i].photo = d.url; delete S.players[i].crop;   // a new photo starts uncropped
+          save({ players: S.players }, true);
+        })
+        .catch(function () { status.textContent = 'Upload failed'; });
+    }
+    up.onchange = function () { send(up.files[0]); };
+    box.ondragover = function (e) { e.preventDefault(); box.classList.add('drag'); };
+    box.ondragleave = function () { box.classList.remove('drag'); };
+    box.ondrop = function (e) { e.preventDefault(); box.classList.remove('drag'); send(e.dataTransfer.files[0]); };
+    box.onclick = function () { up.click(); };
+    wrap.appendChild(box); wrap.appendChild(up);
+    wrap.appendChild(btn(pl.photo ? 'Replace' : 'Upload', 'blue', function () { up.click(); }));
+    if (pl.photo) wrap.appendChild(btn('Crop', '', function () { openCrop(i); }));
+    if (pl.photo) wrap.appendChild(btn('✕', 'stop', function () { S.players[i].photo = ''; delete S.players[i].crop; save({ players: S.players }, true); }));
+    wrap.appendChild(status);
+    td.appendChild(wrap); return td;
+  }
+
+  /* Crop editor: zoom + position for one player's photo, saved as players[i].crop = { z, x, y }
+     (x/y = offset as a fraction of the photo box). Every scene applies it via RB.photoTransform, and all the
+     scenes' photo boxes share the stage's ~1.05:1 ratio, so one crop fits them all. Drag to move, scroll to zoom.
+     Only saved on "Save" — re-sending state on every slider tick would replay on-air animations. */
+  function openCrop(i) {
+    var pl = S.players[i], c0 = pl.crop || {}, c = { z: Number(c0.z) || 1, x: Number(c0.x) || 0, y: Number(c0.y) || 0 };
+    var m = el('div'); m.id = 'crop-modal';
+    var box = el('div', 'cm'); m.appendChild(box);
+    box.appendChild(el('h3', '', 'Crop photo — ' + esc((pl.first + ' ' + pl.last).trim() || 'Player ' + (i + 1))));
+    var stage = el('div', 'cm-stage'); var img = el('img'); img.src = pl.photo; stage.appendChild(img);
+    [[0.04, 'top of head'], [0.40, 'chin']].forEach(function (g) {
+      var line = el('div', 'cm-guide', '<span>' + g[1] + '</span>'); line.style.top = (g[0] * 100) + '%'; stage.appendChild(line);
+    });
+    box.appendChild(stage);
+    box.appendChild(el('div', 'cm-plate', esc((pl.first + ' ' + pl.last).trim())));
+    var inputs = {};
+    function slider(key, label, min, max, step, fmt) {
+      var r = el('div', 'row'); r.appendChild(el('label', '', label));
+      var inp = el('input'); inp.type = 'range'; inp.min = min; inp.max = max; inp.step = step;
+      var v = el('span', 'val');
+      inp.oninput = function () { c[key] = Number(inp.value); paint(); };
+      r.appendChild(inp); r.appendChild(v); box.appendChild(r);
+      inputs[key] = { inp: inp, v: v, fmt: fmt };
+    }
+    slider('z', 'Zoom', 0.5, 4, 0.01, function (n) { return Math.round(n * 100) + '%'; });
+    slider('x', 'Left/Right', -1, 1, 0.005, function (n) { return Math.round(n * 100) + '%'; });
+    slider('y', 'Up/Down', -1, 1, 0.005, function (n) { return Math.round(n * 100) + '%'; });
+    function paint() {
+      img.style.transform = 'translate(' + (c.x * 100) + '%,' + (c.y * 100) + '%) scale(' + c.z + ')';
+      Object.keys(inputs).forEach(function (k) { inputs[k].inp.value = c[k]; inputs[k].v.textContent = inputs[k].fmt(c[k]); });
+    }
+    var drag = null;
+    stage.onpointerdown = function (e) { drag = { x: e.clientX, y: e.clientY, cx: c.x, cy: c.y }; stage.setPointerCapture(e.pointerId); stage.classList.add('drag'); };
+    stage.onpointermove = function (e) {
+      if (!drag) return;
+      c.x = Math.max(-1, Math.min(1, drag.cx + (e.clientX - drag.x) / stage.clientWidth));
+      c.y = Math.max(-1, Math.min(1, drag.cy + (e.clientY - drag.y) / stage.clientHeight));
+      paint();
+    };
+    stage.onpointerup = stage.onpointercancel = function () { drag = null; stage.classList.remove('drag'); };
+    stage.onwheel = function (e) { e.preventDefault(); c.z = Math.max(0.5, Math.min(4, c.z * (e.deltaY < 0 ? 1.05 : 1 / 1.05))); paint(); };
+    var btns = el('div', 'cm-btns');
+    btns.appendChild(btn('Reset', '', function () { c = { z: 1, x: 0, y: 0 }; paint(); }));
+    btns.appendChild(btn('Cancel', '', close));
+    btns.appendChild(btn('Save', 'go', function () {
+      var isDefault = Math.abs(c.z - 1) < 0.001 && Math.abs(c.x) < 0.001 && Math.abs(c.y) < 0.001;
+      if (isDefault) delete S.players[i].crop;
+      else S.players[i].crop = { z: Math.round(c.z * 1000) / 1000, x: Math.round(c.x * 1000) / 1000, y: Math.round(c.y * 1000) / 1000 };
+      save({ players: S.players }, true); close();
+    }));
+    box.appendChild(btns);
+    function close() { document.removeEventListener('keydown', onKey); m.remove(); }
+    function onKey(e) { if (e.key === 'Escape') close(); }
+    document.addEventListener('keydown', onKey);
+    m.onclick = function (e) { if (e.target === m) close(); };
+    document.body.appendChild(m); paint();
   }
 
   function paintTimer() {

@@ -57,4 +57,67 @@ router.post('/api/overlay-nudge', function (req, res) {
   res.json({ ok: true });
 });
 
+// GET /api/fonts — every font file under fonts/ and projects/redbull/fonts/,
+// grouped by family → styles, for the Edit tab's font picker (Red Bull configs).
+// Scanned fresh on each call so a font dropped into either folder shows up
+// without a restart. Italic/variable files are skipped; when the same face
+// exists in several formats the smallest web format wins (woff2 > woff > otf > ttf).
+var FONT_DIRS = ['fonts', 'projects/redbull/fonts'];
+var FONT_EXT_RANK = { '.woff2': 0, '.woff': 1, '.otf': 2, '.ttf': 3 };
+var FONT_STYLE_WEIGHTS = [   // longest names first so 'extrabold' wins over 'bold'
+  ['extralight', 200], ['semibold', 600], ['extrabold', 800], ['condbold', 700],
+  ['regular', 400], ['medium', 500], ['heavy2', 900], ['heavy1', 900], ['heavy', 900],
+  ['black', 900], ['light', 300], ['thin2', 100], ['thin1', 100], ['thin', 100], ['book', 400], ['bold', 700],
+];
+function prettyFamily(s) { return s.replace(/([a-z])([A-Z])/g, '$1 $2').replace(/^Futurafor /, 'Futura for '); }
+function parseFontName(base) {
+  base = base.replace(/-BF[0-9a-f]{6,}$/i, '');              // strip download hash suffixes
+  if (/italic|variable|var$/i.test(base)) return null;
+  var m = base.match(/^(.*?)[-_ ]?([A-Za-z0-9]+)$/);
+  var lower = base.toLowerCase();
+  for (var i = 0; i < FONT_STYLE_WEIGHTS.length; i++) {
+    var s = FONT_STYLE_WEIGHTS[i][0];
+    if (lower.length > s.length && lower.slice(-s.length) === s) {
+      var fam = base.slice(0, -s.length).replace(/[-_ ]+$/, '');
+      var style = base.slice(-s.length);
+      if (s === 'condbold') { fam += ' Cond'; style = 'Bold'; }
+      return { family: prettyFamily(fam), style: style.charAt(0).toUpperCase() + style.slice(1), weight: FONT_STYLE_WEIGHTS[i][1] };
+    }
+  }
+  if (!m) return null;
+  return { family: prettyFamily(base), style: 'Regular', weight: 400 };
+}
+router.get('/api/fonts', function (req, res) {
+  var path = require('path');
+  var root = path.join(__dirname, '..');
+  var faces = {};   // "family|style" -> { family, style, weight, url, rank }
+  function walk(dir) {
+    var entries;
+    try { entries = fs.readdirSync(dir, { withFileTypes: true }); } catch (e) { return; }
+    entries.forEach(function (e) {
+      var full = path.join(dir, e.name);
+      if (e.isDirectory()) return walk(full);
+      var ext = path.extname(e.name).toLowerCase();
+      if (!(ext in FONT_EXT_RANK)) return;
+      var p = parseFontName(path.basename(e.name, path.extname(e.name)));
+      if (!p) return;
+      var key = p.family + '|' + p.style;
+      var url = '/' + path.relative(root, full).split(path.sep).map(encodeURIComponent).join('/');
+      if (!faces[key] || FONT_EXT_RANK[ext] < faces[key].rank) {
+        faces[key] = { family: p.family, style: p.style, weight: p.weight, url: url, rank: FONT_EXT_RANK[ext] };
+      }
+    });
+  }
+  FONT_DIRS.forEach(function (d) { walk(path.join(root, d)); });
+  var families = {};
+  Object.keys(faces).forEach(function (k) {
+    var f = faces[k];
+    (families[f.family] = families[f.family] || []).push({ style: f.style, weight: f.weight, url: f.url });
+  });
+  var out = Object.keys(families).sort().map(function (name) {
+    return { family: name, styles: families[name].sort(function (a, b) { return a.weight - b.weight || a.style.localeCompare(b.style); }) };
+  });
+  res.set('Cache-Control', 'no-store').json(out);
+});
+
 module.exports = router;

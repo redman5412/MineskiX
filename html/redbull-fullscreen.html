@@ -45,24 +45,29 @@
 .sc-row .rb-flag { width: 64px; height: 44px; }
 .fit-inline { flex: 1; min-width: 0; overflow: hidden; white-space: nowrap; text-align: center; }
 
-/* 103a MATCH ID / 103b RESULTS */
-#mi-bar-l { left: 176px; top: 500px; width: 650px; height: 88px; display: flex; }
-#mi-bar-r { left: 1094px; top: 500px; width: 650px; height: 88px; display: flex; }
-#mi-vs { left: 826px; top: 490px; width: 268px; height: 108px; font-size: 104px; letter-spacing: 2px; justify-content: center; }
+/* 103a MATCH ID / 103b RESULTS — photos stand on the name bars (positions per the design-system PDF frames) */
+#mi-photo-l { left: 474px; top: 340px; width: 336px; height: 322px; }
+#mi-photo-r { left: 1112px; top: 340px; width: 336px; height: 322px; }
+#mi-bar-l { left: 176px; top: 660px; width: 650px; height: 88px; display: flex; }
+#mi-bar-r { left: 1094px; top: 660px; width: 650px; height: 88px; display: flex; }
+#mi-vs { left: 826px; top: 650px; width: 268px; height: 108px; font-size: 104px; letter-spacing: 2px; justify-content: center; }
 .bar { position: absolute; display: flex; }
 .bar .rb-plate { position: relative; height: 100%; }
 .bar .ctry { width: 200px; background: var(--rb-navy-deep); gap: 14px; font-size: 40px; }
 .bar .nm   { flex: 1; background: var(--rb-navy-plate); font-size: 55px; padding: 0 calc(var(--sl) + 8px); }   /* keep text clear of the slanted end */
 .bar .rb-flag { width: 62px; height: 42px; }
-#mr-name-l { left: 316px; top: 486px; width: 424px; height: 84px; --sl: 26px; font-size: 52px; padding: 0 34px; }
-#mr-name-r { left: 1180px; top: 486px; width: 424px; height: 84px; --sl: 26px; font-size: 52px; padding: 0 34px; }
-#mr-score  { left: 740px; top: 460px; width: 440px; height: 130px; font-size: 104px; letter-spacing: 3px; color: #fff; justify-content: center; display: flex; align-items: center; text-shadow: 0 4px 18px rgba(0,0,80,.45); }
-#mr-chip-l { left: 544px; top: 576px; width: 150px; height: 40px; font-size: 28px; }
-#mr-chip-r { left: 1200px; top: 576px; width: 150px; height: 40px; font-size: 28px; }
+#mr-photo-l { left: 566px; top: 380px; width: 300px; height: 290px; }
+#mr-photo-r { left: 1092px; top: 380px; width: 300px; height: 290px; }
+#mr-name-l { left: 316px; top: 666px; width: 424px; height: 84px; --sl: 26px; font-size: 52px; padding: 0 34px; }
+#mr-name-r { left: 1180px; top: 666px; width: 424px; height: 84px; --sl: 26px; font-size: 52px; padding: 0 34px; }
+#mr-score  { left: 740px; top: 640px; width: 440px; height: 130px; font-size: 104px; letter-spacing: 3px; color: #fff; justify-content: center; display: flex; align-items: center; text-shadow: 0 4px 18px rgba(0,0,80,.45); }
+#mr-chip-l { left: 544px; top: 756px; width: 150px; height: 40px; font-size: 28px; }
+#mr-chip-r { left: 1200px; top: 756px; width: 150px; height: 40px; font-size: 28px; }
 .rb-chip .rb-flag { width: 34px; height: 24px; }
 
 /* player cell used by Top 16/8/4 */
 .pc { position: absolute; width: var(--cw); height: var(--ch); }
+.pc .rb-photo { left: calc((var(--cw) - var(--pw)) / 2); top: 0; width: var(--pw); height: var(--ph); }
 .pc .pc-name { left: calc((var(--cw) - var(--nw)) / 2); top: var(--nt); width: var(--nw); height: var(--nh); font-size: var(--fs); --sl: calc(var(--nh) * .26); padding: 0 calc(var(--sl) + 6px); }   /* padding keeps text clear of the slanted ends so shrink-to-fit accounts for them */
 .pc .rb-chip { left: calc((var(--cw) - var(--nw)) / 2 + 10px); top: var(--ct); width: var(--chw); height: var(--chh); font-size: var(--cfs); }
 .pc .rb-chip .rb-flag { width: calc(var(--chh) * 1.2); height: calc(var(--chh) * .72); }
@@ -119,6 +124,7 @@
 .lb-stat { width: 70px; justify-content: center; background: var(--rb-silver); color: var(--rb-navy); font-family: 'RB Mono', monospace; font-weight: 800; font-size: 32px; clip-path: polygon(8px 0, 100% 0, calc(100% - 8px) 100%, 0 100%); }
 
 /* 110 WINNER */
+#wn-photo { left: 980px; top: 150px; width: 340px; height: 336px; }
 #wn-logo  { left: 500px; top: 420px; width: 290px; height: 258px; z-index: 3; }
 #wn-name  { left: 690px; top: 484px; width: 780px; height: 104px; --sl: 34px; font-size: 64px; letter-spacing: 1px; padding: 0 70px 0 130px; }
 #wn-sub   { left: 724px; top: 590px; width: 660px; height: 84px; --sl: 28px; font-size: 52px; letter-spacing: 3px; text-transform: uppercase; padding-left: 70px; }
@@ -199,6 +205,7 @@
   <!-- 103a MATCH ID -->
   <div id="mi-page" class="rb-page">
     <img id="mi-logo" class="rb-logo logo-c rb-pop">
+    <div id="mi-photo-l" class="rb-photo rb-pop" style="--d:.1s"></div><div id="mi-photo-r" class="rb-photo rb-pop" style="--d:.2s"></div>
     <div id="mi-bar-l" class="bar rb-slide-l" style="--d:.2s"></div>
     <div id="mi-vs" class="rb-plate rb-apotek-black rb-pop" style="--d:.35s;color:#fff;text-shadow:0 4px 20px rgba(0,0,90,.5)">VS</div>
     <div id="mi-bar-r" class="bar rb-slide-r" style="--d:.2s"></div>
@@ -208,6 +215,7 @@
   <!-- 103b MATCH RESULTS -->
   <div id="mr-page" class="rb-page">
     <img id="mr-logo" class="rb-logo logo-c rb-pop">
+    <div id="mr-photo-l" class="rb-photo rb-pop" style="--d:.1s"></div><div id="mr-photo-r" class="rb-photo rb-pop" style="--d:.2s"></div>
     <div id="mr-name-l" class="rb-plate rb-navy sl-r rb-name rb-slide-l" style="--d:.2s" data-fit="52,20"></div>
     <div id="mr-score" class="rb-plate rb-mono rb-pop" style="--d:.35s" data-fit="104,56"></div>
     <div id="mr-name-r" class="rb-plate rb-navy sl-l rb-name rb-slide-r" style="--d:.2s" data-fit="52,20"></div>
@@ -264,6 +272,7 @@
 
   <!-- 110 WINNER -->
   <div id="wn-page" class="rb-page">
+    <div id="wn-photo" class="rb-photo rb-pop"></div>
     <img id="wn-logo" class="rb-logo rb-logo-tight rb-pop" style="--d:.15s">
     <div id="wn-name" class="rb-plate rb-silver sl-r rb-name rb-slide-r" style="--d:.2s" data-fit="64,28"></div>
     <div id="wn-sub" class="rb-plate rb-navy sl-r rb-apotek-semi rb-slide-r" style="--d:.35s" data-fit="52,18"></div>
@@ -314,7 +323,7 @@
 </div>
 
 <script src="/html/js/overlay-sse-shim.js"></script>
-<script src="/html/redbull/rb-core.js?v=5"></script>
+<script src="/html/redbull/rb-core.js?v=9"></script>
 <script>
 (function () {
   'use strict';
@@ -356,42 +365,45 @@
   function applyMatchId(s) {
     var a = RB.player(s.match.p1), b = RB.player(s.match.p2);
     $('mi-bar-l').innerHTML = bar(a, 'l'); $('mi-bar-r').innerHTML = bar(b, 'r');
+    RB.setPhoto($('mi-photo-l'), a); RB.setPhoto($('mi-photo-r'), b);
   }
   function chip(pl) { return flagImg(pl) + '<span>' + RB.esc(pl.code) + '</span>'; }
   function applyResults(s) {
     var a = RB.player(s.match.p1), b = RB.player(s.match.p2);
     $('mr-name-l').innerHTML = RB.nameHTML(a); $('mr-name-r').innerHTML = RB.nameHTML(b);
+    RB.setPhoto($('mr-photo-l'), a); RB.setPhoto($('mr-photo-r'), b);
     function z(n) { n = Number(n) || 0; return (n < 10 ? '0' : '') + n; }
     $('mr-score').textContent = z(s.match.score1) + ' - ' + z(s.match.score2);
     $('mr-chip-l').innerHTML = chip(a); $('mr-chip-r').innerHTML = chip(b);
   }
 
-  // Player grid cell (Top 16 / 8 / 4)
+  // Player grid cell (Top 16 / 8 / 4): photo (pw x ph) on top, name plate at nt, country chip at ct.
+  // Rows/columns follow the design-system PDF frames; plate/chip sizes keep the larger Oct-17 type.
   function cell(pl, x, y, v, delay) {
     var st = 'left:' + x + 'px;top:' + y + 'px;--d:' + delay + 's;' + Object.keys(v).map(function (k) { return '--' + k + ':' + v[k]; }).join(';');
-    return '<div class="pc rb-pop" style="' + st + '"><div class="rb-plate rb-navy sl-both pc-name rb-name" data-fit="' + parseFloat(v.fs) + ',12">' + RB.nameHTML(pl) + '</div>' +
+    return '<div class="pc rb-pop" style="' + st + '"><div class="rb-photo">' + RB.photoHTML(pl) + '</div><div class="rb-plate rb-navy sl-both pc-name rb-name" data-fit="' + parseFloat(v.fs) + ',12">' + RB.nameHTML(pl) + '</div>' +
       '<div class="rb-chip pc-chip">' + flagImg(pl) + '<span>' + RB.esc(pl.code) + '</span></div></div>';
   }
   function applyTop16(s) {
     var ids = s.top16, h = '';
-    var V = { cw: '246px', ch: '96px', nw: '230px', nh: '56px', nt: '0px', ct: '62px', chw: '106px', chh: '32px', fs: '35px', cfs: '20px' };
+    var V = { cw: '246px', ch: '254px', pw: '170px', ph: '160px', nw: '230px', nh: '56px', nt: '160px', ct: '222px', chw: '106px', chh: '32px', fs: '35px', cfs: '20px' };
     var rows = [[584, 830, 1076, 1326], [344, 590, 836, 1080, 1326, 1574], [344, 590, 836, 1080, 1326, 1574]];
-    var tops = [310, 510, 710], n = 0;
+    var tops = [140, 430, 740], n = 0;
     rows.forEach(function (xs, r) { xs.forEach(function (cx) { h += cell(RB.player(ids[n]), cx - 123, tops[r], V, 0.1 + n * 0.04); n++; }); });
     $('t16-grid').innerHTML = h;
   }
   function applyTop8(s) {
     var ids = s.top8, h = '';
-    var V = { cw: '300px', ch: '116px', nw: '290px', nh: '68px', nt: '0px', ct: '76px', chw: '116px', chh: '38px', fs: '42px', cfs: '24px' };
-    var xs = [424, 788, 1148, 1508], tops = [400, 600];
+    var V = { cw: '300px', ch: '302px', pw: '200px', ph: '190px', nw: '290px', nh: '68px', nt: '190px', ct: '264px', chw: '116px', chh: '38px', fs: '42px', cfs: '24px' };
+    var xs = [424, 788, 1148, 1508], tops = [290, 590];
     for (var n = 0; n < 8; n++) h += cell(RB.player(ids[n]), xs[n % 4] - 150, tops[Math.floor(n / 4)], V, 0.1 + n * 0.05);
     $('t8-grid').innerHTML = h;
   }
   function applyTop4(s) {
     var ids = s.top4, h = '';
-    var V = { cw: '420px', ch: '150px', nw: '390px', nh: '92px', nt: '0px', ct: '100px', chw: '136px', chh: '44px', fs: '57px', cfs: '28px' };
+    var V = { cw: '420px', ch: '414px', pw: '290px', ph: '270px', nw: '390px', nh: '92px', nt: '270px', ct: '370px', chw: '136px', chh: '44px', fs: '57px', cfs: '28px' };
     var xs = [364, 760, 1156, 1550];
-    for (var n = 0; n < 4; n++) h += cell(RB.player(ids[n]), xs[n] - 210, 470, V, 0.1 + n * 0.07);
+    for (var n = 0; n < 4; n++) h += cell(RB.player(ids[n]), xs[n] - 210, 380, V, 0.1 + n * 0.07);
     $('t4-grid').innerHTML = h;
   }
 
@@ -450,7 +462,7 @@
   }
   function applyWinner(s) {
     var pl = RB.player(s.winner.p);
-    $('wn-name').innerHTML = RB.nameHTML(pl); $('wn-sub').textContent = s.winner.sub || '';
+    RB.setPhoto($('wn-photo'), pl); $('wn-name').innerHTML = RB.nameHTML(pl); $('wn-sub').textContent = s.winner.sub || '';
   }
   function applySplit2(s) { $('s2-title-l').textContent = s.layouts.split2[0] || ''; $('s2-title-r').textContent = s.layouts.split2[1] || ''; }
   function applySplit3(s) { var t = s.layouts.split3; $('s3-title-t').textContent = t[0] || ''; $('s3-title-l').textContent = t[1] || ''; $('s3-title-r').textContent = t[2] || ''; }

@@ -70,6 +70,11 @@ body { font-family: 'RB Bull Cond', 'Arial Narrow', sans-serif; font-weight: 700
    is ~2x the emblem since the glow fills most of the canvas. .rb-logo-tight = cropped, edge-faded file for
    scenes where the full glow would overlap neighbouring plates (Winner, Supers). */
 .rb-logo { position: absolute; object-fit: contain; }
+/* Player photo: the box (.rb-photo, the editable/positioned element) clips; the <img> inside is the cut-out,
+   bottom-anchored so the shoulders sit on the plate below. Per-player crop (Roster → Crop) = a transform on the
+   <img> from RB.photoHTML(): translate in % of the box, scale around the top-centre (zooming keeps the head in place). */
+.rb-photo { position: absolute; overflow: hidden; }
+.rb-photo > img { position: absolute; left: 0; top: 0; width: 100%; height: 100%; object-fit: contain; object-position: center bottom; transform-origin: 50% 0; }
 .rb-bc-regular { font-family: 'RB Bull Cond', 'Arial Narrow', sans-serif; font-weight: 400; }   /* sub-plates, body */
 .rb-apotek-black { font-family: 'RB Apotek', 'RB Bull Cond', sans-serif; font-weight: 900; }   /* event titles: VS, bracket WINNER */
 .rb-apotek-semi { font-family: 'RB Apotek', 'RB Bull Cond', sans-serif; font-weight: 600; }   /* secondary titles: CHAMPIONSHIP WINNER, bracket rounds */

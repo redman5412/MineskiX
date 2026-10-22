@@ -15,19 +15,34 @@
   RB.FC27 = '/projects/redbull/assets/brand/eafc27.png';
   RB.PS = '/projects/redbull/assets/brand/ps-tournaments.png';
   RB.FLAG = function (iso2) { return iso2 ? '/projects/redbull/assets/flags/' + iso2 + '.svg' : ''; };
+  // Placeholder for players with no uploaded photo (Match Board → Roster): a black arms-crossed silhouette
+  // (transparent PNG), bottom-anchored like a real cut-out (.rb-photo uses object-position: center bottom).
+  RB.SILHOUETTE = '/projects/redbull/assets/brand/player-silhouette.png';
 
   RB.esc = function (s) { return String(s == null ? '' : s).replace(/[&<>"]/g, function (c) { return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]; }); };
 
   /* ── Players (index into the Match Board roster) ── */
   RB.player = function (i) {
     var p = (RB.state && RB.state.players && RB.state.players[i]) || null;
-    if (!p) return { idx: i, empty: true, first: '', last: '', code: '', iso2: '', flag: '' };
+    if (!p) return { idx: i, empty: true, first: '', last: '', code: '', iso2: '', flag: '', photo: RB.SILHOUETTE, hasPhoto: false, crop: null };
     var c = RB.countries[p.country] || {};
     return {
       idx: i, empty: false, first: String(p.first || '').toUpperCase(), last: String(p.last || '').toUpperCase(),
       iso2: p.country || '', code: c.code || String(p.country || '').toUpperCase(), flag: RB.FLAG(p.country),
+      photo: p.photo || RB.SILHOUETTE, hasPhoto: !!p.photo, crop: p.photo ? (p.crop || null) : null,
     };
   };
+  /* Photo crop { z: zoom (1 = fit), x, y: offset as a fraction of the box } — shared by every scene and by the
+     Roster tab's crop editor, so one adjustment looks the same on Match ID, Top 16, Winner, etc. */
+  RB.photoTransform = function (crop) {
+    if (!crop) return '';
+    var z = Number(crop.z) || 1, x = Number(crop.x) || 0, y = Number(crop.y) || 0;
+    return 'translate(' + (x * 100) + '%,' + (y * 100) + '%) scale(' + z + ')';
+  };
+  RB.photoHTML = function (pl) {
+    return '<img src="' + RB.esc(pl.photo) + '" style="transform:' + RB.photoTransform(pl.crop) + '">';
+  };
+  RB.setPhoto = function (el, pl) { if (el) el.innerHTML = RB.photoHTML(pl); };
   RB.nameHTML = function (pl) {
     return '<span class="fn">' + RB.esc(pl.first) + '</span>&nbsp;<span class="ln">' + RB.esc(pl.last) + '</span>';
   };
@@ -67,16 +82,33 @@
   };
 
   /* ── Saved Edit-tab overrides (position/size/font-size/asset), same contract as the other overlay pages ── */
+  /* Edit-tab font picker: { fontFamily, fontStyle, fontWeight, fontUrl, letterSpacing } on a selector.
+     Each picked face gets its own @font-face family name, so the weight can't be mis-matched or
+     faux-bolded. Applies to the box AND everything inside it (.fn/.ln spans carry their own font
+     classes, which would otherwise win). Shared with dashboard.html's live Edit preview. */
+  var FONT_KEYS = { fontFamily: 1, fontStyle: 1, fontWeight: 1, fontUrl: 1, letterSpacing: 1 };
+  RB.fontCss = function (sel, p) {
+    var face = '', d = [];
+    if (p.fontUrl) {
+      var fam = 'RBX ' + p.fontFamily + ' ' + p.fontStyle;
+      face = "@font-face{font-family:'" + fam + "';font-weight:" + (p.fontWeight || 400) + ";src:url('" + p.fontUrl + "');font-display:block}";
+      d.push("font-family:'" + fam + "',sans-serif !important", 'font-weight:' + (p.fontWeight || 400) + ' !important');
+    }
+    if (p.letterSpacing !== undefined && p.letterSpacing !== '') d.push('letter-spacing:' + p.letterSpacing + ' !important');
+    if (!d.length) return face;
+    return face + '\n' + sel.split(',').map(function (s) { s = s.trim(); return s + ',' + s + ' *'; }).join(',') + '{' + d.join(';') + '}';
+  };
+
   RB.loadOverrides = function (styleFile) {
     return fetch('/api/overlay-styles?file=' + encodeURIComponent(styleFile), { cache: 'no-store' })
       .then(function (r) { return r.json(); })
       .then(function (styles) {
         if (!styles || !Object.keys(styles).length) return;
         var css = Object.keys(styles).map(function (sel) {
-          var d = Object.keys(styles[sel]).filter(function (p) { return p !== 'asset'; }).map(function (p) {
+          var d = Object.keys(styles[sel]).filter(function (p) { return p !== 'asset' && !FONT_KEYS[p]; }).map(function (p) {
             return (p === 'fontSize' ? 'font-size' : p) + ':' + styles[sel][p] + ' !important';
           }).join(';');
-          return sel + '{' + d + '}';
+          return sel + '{' + d + '}\n' + RB.fontCss(sel, styles[sel]);
         }).join('\n');
         var st = document.createElement('style'); st.id = 'rb-overrides'; st.textContent = css; document.head.appendChild(st);
         Object.keys(styles).forEach(function (sel) {

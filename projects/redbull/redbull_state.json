@@ -7,12 +7,14 @@
     {
       "first": "Redeerich",
       "last": "Garcia",
-      "country": "ph"
+      "country": "ph",
+      "photo": "/projects/redbull/assets/players/1792646865219-Red.png"
     },
     {
       "first": "John Radilh",
       "last": "Mancao",
-      "country": "ph"
+      "country": "ph",
+      "photo": "/projects/redbull/assets/players/1792646868723-Rads.png"
     },
     {
       "first": "John Vergel",
@@ -27,7 +29,8 @@
     {
       "first": "Shawn",
       "last": "Manabat",
-      "country": "ph"
+      "country": "ph",
+      "photo": "/projects/redbull/assets/players/1792646871446-Shun.png"
     },
     {
       "first": "Christian James",
@@ -145,7 +148,7 @@
   },
   "match": {
     "p1": 0,
-    "p2": 1,
+    "p2": 4,
     "score1": 1,
     "score2": 0
   },

@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <script src="/html/js/cache-bust.js"></script>
   <script src="/html/js/overlay-sse-shim.js"></script>
-  <script src="/html/redbull/rb-dashboard-config.js?v=9"></script>
+  <script src="/html/redbull/rb-dashboard-config.js?v=10"></script>
   <title>MineskiX Dashboard</title>
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -877,6 +877,14 @@
     .edit-step-btn:hover  { filter: brightness(1.3); }
     .edit-step-btn:active { filter: brightness(0.85); }
     .edit-ctrl-unit { font-size: 11px; color: #444; }
+    .edit-ctrl-select {
+      flex: 1; min-width: 0; height: 28px;
+      background: #15151f; color: #ddd;
+      border: 1px solid #333344; border-radius: 4px;
+      font-size: 12px; padding: 0 6px; outline: none;
+    }
+    .edit-ctrl-select:focus { border-color: #4455aa; }
+    .edit-font-title { font-size: 11px; color: #888; margin-bottom: 8px; text-transform: uppercase; letter-spacing: 1px; }
     .edit-aspect-chk {
       width: 15px; height: 15px;
       margin-left: 4px;
@@ -5539,9 +5547,22 @@
       if (p.fontSize !== undefined && !skipFontSize) d.push('font-size:' + p.fontSize + 'px !important');
       return sel + '{' + d.join(';') + '}';
     }).join('\n');
+    /* Red Bull pages: font picker values → CSS via the page's own RB.fontCss,
+       then re-fit text once the new face has loaded (box widths depend on it). */
+    var rbWin = editIframe.contentWindow;
+    var hasRbFonts = false;
+    if (rbWin && rbWin.RB && rbWin.RB.fontCss) {
+      Object.keys(editValues).forEach(function(sel) {
+        var p = editValues[sel];
+        if (p && (p.fontUrl || p.letterSpacing !== undefined)) { css += '\n' + rbWin.RB.fontCss(sel, p); hasRbFonts = true; }
+      });
+    }
     var s = doc.getElementById('sb-live-edit');
     if (!s) { s = doc.createElement('style'); s.id = 'sb-live-edit'; doc.head.appendChild(s); }
     s.textContent = css;
+    if (hasRbFonts && rbWin.RB.fitAll) {
+      try { rbWin.RB.fitAll(doc); doc.fonts.ready.then(function () { rbWin.RB.fitAll(doc); }); } catch (e) {}
+    }
 
     /* `asset` (uploaded per-project image/video replacement) can't go
        through the CSS !important path above — apply directly to any
@@ -5894,7 +5915,148 @@
       ? editIframe.contentDocument.querySelector(id) : null;
     if (liveEl && (liveEl.tagName === 'IMG' || liveEl.tagName === 'VIDEO')) {
       ctrl.appendChild(buildAssetControls(id));
+    } else if (isRbEditConfig() && !(liveEl && liveEl.classList.contains('rb-photo'))) {   /* photo boxes: no text */
+      ctrl.appendChild(buildFontControls(id, liveEl));
     }
+  }
+
+  /* ── Font picker (Red Bull configs only) ─────────────────────────
+     Saves { fontFamily, fontStyle, fontWeight, fontUrl, letterSpacing } on the
+     selector; the overlay page's RB.fontCss() (rb-core.js) turns that into CSS,
+     both for the real page on load and for this live preview. The font list
+     comes from GET /api/fonts (scans fonts/ + projects/redbull/fonts/). */
+  function isRbEditConfig() {
+    var cfg = EDIT_CONFIGS[currentConfigKey];
+    return !!(cfg && /^redbull_/.test(cfg.styleFile || ''));
+  }
+  var fontListPromise = null;
+  function getFontList() {
+    if (!fontListPromise) {
+      fontListPromise = fetch('/api/fonts', { cache: 'no-store' })
+        .then(function (r) { if (!r.ok) throw new Error(r.status); return r.json(); })
+        .catch(function (e) { fontListPromise = null; throw e; });
+    }
+    return fontListPromise;
+  }
+  function buildFontControls(id, liveEl) {
+    var wrap = document.createElement('div');
+    wrap.className = 'edit-asset-block';
+    var title = document.createElement('div');
+    title.className = 'edit-font-title';
+    title.textContent = 'Font';
+    wrap.appendChild(title);
+
+    function mkRow(label) {
+      var row = document.createElement('div');
+      row.className = 'edit-ctrl-row';
+      var lbl = document.createElement('div');
+      lbl.className = 'edit-ctrl-label';
+      lbl.textContent = label;
+      row.appendChild(lbl);
+      wrap.appendChild(row);
+      return row;
+    }
+    var famSel = document.createElement('select'); famSel.className = 'edit-ctrl-select';
+    var styleSel = document.createElement('select'); styleSel.className = 'edit-ctrl-select';
+    mkRow('Font').appendChild(famSel);
+    var styleRow = mkRow('Weight'); styleRow.appendChild(styleSel);
+
+    /* Letter spacing — empty means "page default" (shown as the placeholder). */
+    var lsRow = mkRow('Spacing');
+    var lsMinus = document.createElement('button'); lsMinus.className = 'edit-step-btn'; lsMinus.textContent = '−';
+    var lsInp = document.createElement('input'); lsInp.type = 'number'; lsInp.step = 0.5; lsInp.className = 'edit-ctrl-input';
+    var lsPlus = document.createElement('button'); lsPlus.className = 'edit-step-btn'; lsPlus.textContent = '+';
+    var lsUnit = document.createElement('div'); lsUnit.className = 'edit-ctrl-unit'; lsUnit.textContent = 'px';
+    [lsMinus, lsInp, lsPlus, lsUnit].forEach(function (n) { lsRow.appendChild(n); });
+
+    var hint = document.createElement('div');
+    hint.className = 'edit-asset-hint';
+    hint.style.marginTop = '6px';
+    wrap.appendChild(hint);
+
+    var vals = editValues[id] || {};
+    var pageDefault = '';
+    if (liveEl) {
+      try {
+        var cs = editIframe.contentWindow.getComputedStyle(liveEl);
+        pageDefault = cs.fontFamily.split(',')[0].replace(/['"]/g, '') + ' ' + cs.fontWeight;
+        lsInp.placeholder = parseFloat(cs.letterSpacing) || 0;
+      } catch (e) {}
+    }
+    if (vals.letterSpacing !== undefined) lsInp.value = parseFloat(vals.letterSpacing);
+    hint.textContent = 'Applies to this box and everything inside it.' + (pageDefault && !vals.fontUrl ? ' Page default: ' + pageDefault + '.' : '');
+
+    function setVals(patch) {
+      if (!editValues[id]) editValues[id] = {};
+      Object.keys(patch).forEach(function (k) {
+        if (patch[k] === undefined) delete editValues[id][k]; else editValues[id][k] = patch[k];
+      });
+      applyToEditIframe();
+    }
+    function commitLs() {
+      var v = parseFloat(lsInp.value);
+      setVals({ letterSpacing: isNaN(v) ? undefined : v + 'px' });
+    }
+    lsInp.addEventListener('focus', function () { pushHistory(); });
+    lsInp.addEventListener('input', commitLs);
+    lsMinus.addEventListener('click', function () {
+      pushHistory();
+      var base = lsInp.value === '' ? (parseFloat(lsInp.placeholder) || 0) : parseFloat(lsInp.value);
+      lsInp.value = Math.round((base - 0.5) * 100) / 100; commitLs();
+    });
+    lsPlus.addEventListener('click', function () {
+      pushHistory();
+      var base = lsInp.value === '' ? (parseFloat(lsInp.placeholder) || 0) : parseFloat(lsInp.value);
+      lsInp.value = Math.round((base + 0.5) * 100) / 100; commitLs();
+    });
+
+    famSel.innerHTML = '<option>Loading fonts…</option>';
+    famSel.disabled = styleSel.disabled = true;
+    styleRow.style.display = 'none';
+    getFontList().then(function (fonts) {
+      famSel.innerHTML = '';
+      var def = document.createElement('option'); def.value = ''; def.textContent = '(Page default)';
+      famSel.appendChild(def);
+      fonts.forEach(function (f) {
+        var o = document.createElement('option'); o.value = f.family; o.textContent = f.family; famSel.appendChild(o);
+      });
+      famSel.disabled = false;
+      function fillStyles(family, keepStyle) {
+        var fam = fonts.filter(function (f) { return f.family === family; })[0];
+        styleSel.innerHTML = '';
+        if (!fam) { styleRow.style.display = 'none'; return null; }
+        fam.styles.forEach(function (s, i) {
+          var o = document.createElement('option'); o.value = String(i); o.textContent = s.style + ' (' + s.weight + ')'; styleSel.appendChild(o);
+        });
+        var idx = 0;
+        fam.styles.forEach(function (s, i) {
+          if (keepStyle ? s.style === keepStyle : s.weight === 400) idx = i;
+        });
+        styleSel.value = String(idx);
+        styleSel.disabled = false;
+        styleRow.style.display = '';
+        return fam;
+      }
+      function commitFace(fam) {
+        var s = fam && fam.styles[parseInt(styleSel.value, 10)];
+        if (!s) return setVals({ fontFamily: undefined, fontStyle: undefined, fontWeight: undefined, fontUrl: undefined });
+        setVals({ fontFamily: fam.family, fontStyle: s.style, fontWeight: s.weight, fontUrl: s.url });
+      }
+      if (vals.fontFamily) { famSel.value = vals.fontFamily; fillStyles(vals.fontFamily, vals.fontStyle); }
+      famSel.addEventListener('change', function () {
+        pushHistory();
+        var fam = fillStyles(famSel.value, null);
+        hint.textContent = 'Applies to this box and everything inside it.' + (!fam && pageDefault ? ' Page default: ' + pageDefault + '.' : '');
+        commitFace(fam);
+      });
+      styleSel.addEventListener('change', function () {
+        pushHistory();
+        commitFace(fonts.filter(function (f) { return f.family === famSel.value; })[0]);
+      });
+    }).catch(function () {
+      famSel.innerHTML = '<option>Font list unavailable — restart the server</option>';
+    });
+    return wrap;
   }
 
   const MAX_ASSET_BYTES = 50 * 1024 * 1024;
@@ -6139,6 +6301,9 @@
       if (v.height   !== undefined) out[sel].height   = v.height   + 'px';
       if (v.fontSize !== undefined) out[sel].fontSize = v.fontSize + 'px';
       if (v.asset    !== undefined) out[sel].asset    = v.asset;
+      ['fontFamily', 'fontStyle', 'fontWeight', 'fontUrl', 'letterSpacing'].forEach(function(k) {
+        if (v[k] !== undefined) out[sel][k] = v[k];
+      });
     });
     var styleFile = EDIT_CONFIGS[currentConfigKey].styleFile;
     /* Multiple configs can share one style file (Waiting Lobby / Team
@@ -6184,6 +6349,9 @@
       if (s.height   !== undefined) editValues[sel].height   = parseNum(s.height);
       if (s.fontSize !== undefined) editValues[sel].fontSize = parseNum(s.fontSize);
       if (s.asset    !== undefined) editValues[sel].asset    = s.asset;
+      ['fontFamily', 'fontStyle', 'fontWeight', 'fontUrl', 'letterSpacing'].forEach(function(k) {
+        if (s[k] !== undefined) editValues[sel][k] = s[k];
+      });
     });
   }
 

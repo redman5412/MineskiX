@@ -227,7 +227,18 @@ A self-contained project built from `projects/redbull/assets/Wings-Cup-Broadcast
 - **No API, no MLBB data.** Every value comes from the Red Bull Match Board tab
   (`html/redbull-match-dashboard.html`, same dashboard password as the normal Match Board) →
   `POST /rb/state` → `lib/redbull.js` → `projects/redbull/redbull_state.json` → SSE event `rbdata`.
-  Data model: a 32-slot roster (name, country, photo upload) that every graphic picks players from by index.
+  Data model: a 16-slot roster (name, country, photo) that every graphic picks players from by index.
+  **Player photos** — uploaded per player on the Roster tab (button or drag-and-drop → `/api/projects/redbull/assets/players`
+  → `players[i].photo`); `RB.player(i).photo` falls back to `RB.SILHOUETTE` (`projects/redbull/assets/brand/player-silhouette.png`, transparent black arms-crossed figure).
+  Shown on 103a Match ID, 103b Match Results, 104a/b/c Top 16/8/4 (the grid `cell()` — `pw`/`ph` = photo box, `nt`/`ct` =
+  plate/chip offsets below it), 110 Winner and 203 VS Super; positions follow the design-system PDF frames. `.rb-photo` is
+  a clipping box (div, the Edit-tab element) with the `<img>` inside, bottom-anchored so cut-outs stand on the plate below.
+  **Per-player crop** (Roster → Crop: drag / scroll-zoom / sliders) saves `players[i].crop = { z, x, y }` (x/y = fraction of
+  the box) and `RB.photoHTML()` turns it into `translate() scale()` with `transform-origin: 50% 0` (zoom keeps the head put).
+  All photo boxes are ~1.0–1.07:1, so one crop fits every scene. Photo template for the design: **1050x1000 px transparent
+  PNG**, head top ~4%, chin ~40%, shoulders off the bottom edge — guide overlay at
+  `projects/redbull/assets/templates/player-photo-guide-1050x1000.png`. Uploads are downscaled client-side to 2000 px max.
+  **Player photos arriving as raw files → see "Red Bull player photo workflow" below.**
 - **Pages:** `html/redbull-fullscreen.html` (15 scenes + wipe; one shared `RBWC - BG LOOP.webm`, scenes
   are mutually exclusive) and `html/redbull-supers.html` (transparent: 201a/b/c, 202, 203 VS Super, Player
   In-Game frame; one at a time). Shared bits: `html/redbull/rb.css`, `rb-core.js`. Layout scenes (107a/b,
@@ -250,7 +261,7 @@ A self-contained project built from `projects/redbull/assets/Wings-Cup-Broadcast
   (Winner + all Supers), where the full glow would overlap neighbouring plates.
 - **`/html/redbull/*.js` is served with a 1-day browser cache** (server.js only no-caches `.html`/`.css`/
   `/html/js/`), so bump the `?v=N` on the `rb-core.js` / `rb-dashboard-config.js` script tags when you change
-  them, or open OBS/vMix sources keep the old copy. Players without an uploaded photo show a silhouette.
+  them, or open OBS/vMix sources keep the old copy.
 - **Typography follows the client sheet** (fonts confirmed against those embedded in the design-system PDF):
   **Bull Condensed** (`/fonts/BullCondensed-{Regular,Bold}.ttf`, family `'RB Bull Cond'`) is the body default —
   Bold for plate titles, labels, surnames (`.ln`), country codes; Regular (`.fn`, `.rb-bc-regular`) for first names
@@ -259,7 +270,63 @@ A self-contained project built from `projects/redbull/assets/Wings-Cup-Broadcast
   Holding headline/sub-line stay General Sans** (`.rb-gs-semibold` headline / `.rb-gs-regular` sub-line at 1px letter-spacing, matched to the client sample — user's choice). Text maxima
   (`data-fit`) are ~62% of each plate's height; slanted plates (`sl-*`) need horizontal padding ≥ `--sl` or the
   slant hides the first/last letters.
+- **Edit-tab font picker (Red Bull configs only)** — any non-image element gets Font / Weight / Spacing
+  controls. Saved per selector as `fontFamily`/`fontStyle`/`fontWeight`/`fontUrl`/`letterSpacing` in the same
+  `overlay_styles.json` bucket; `RB.fontCss()` in `rb-core.js` turns them into an `@font-face` + `!important`
+  rule on the box *and its descendants*, used both by `RB.loadOverrides` (real pages) and the dashboard's live
+  preview. The list comes from `GET /api/fonts` (`routes/overlayStyles.js`), which scans `fonts/` and
+  `projects/redbull/fonts/` on every call — dropping a new font file into either folder needs no restart or code
+  change (italic/variable files are skipped; filename → family/style parsing is `parseFontName`).
 - `routes/*.js` / `lib/*.js` changes here need a server restart like everything else.
+
+## Red Bull player photo workflow — "new photos are in the raw folder"
+
+The user drops player photos (any size, framing, background; jpg/png/webp) into
+`projects/redbull/redbullphotosraw/` and asks for them to be processed. Every processed photo must come out as:
+**1000x1000 transparent PNG, background removed, top of head at 40 px (4%), chin at 400 px (40%), face centred
+horizontally, shoulders running off the bottom edge** (the name plate sits there) — the framing every overlay
+photo box expects, so no Roster-tab crop is needed. Output goes to `projects/redbull/redbullphotos_editted/`
+(that spelling is the real folder name), same base filename, `.png`.
+
+**Steps, every time:**
+1. List `redbullphotosraw/` and look at each new raw (Read the image) — note anything odd up front (watermarks,
+   stock/agency photos that need a licence, group shots, sunglasses/caps hiding the face, very small files).
+2. Run the script (it skips raws that already have an output; `--force` to redo, `--only NAME` for one file,
+   `--debug` writes `*_debug.jpg` next to the output showing the detected face box / head-top / chin lines):
+   ```
+   C:/Users/mineski-prod/.redbull-photo-tool/venv/Scripts/python.exe projects/redbull/tools/process_player_photos.py
+   ```
+   Run it with a long timeout (or in the background for big batches): loading the ~970 MB model takes ~60 s,
+   then each photo is a few seconds. The `[ WARN ... setPreferableTarget ]` line from OpenCV is harmless noise.
+3. **Check every output visually** — composite it over broadcast blue with lines at y=40 and y=400 and Read
+   that preview (don't trust the numbers alone); use `--debug` when a placement looks off. Delete any
+   `*_debug.jpg` from the edited folder afterwards — it's a deliverables folder.
+4. Relay the script's `!` warnings to the user per photo, in plain words:
+   - *low-res source - upscaled Nx* → will look soft on air; ask for a bigger original.
+   - *figure ends above the bottom edge* → photo is cropped too tight (no shoulders); a gap will show above the plate.
+   - *body cut off at the left/right edge* → straight edge visible on air; needs a wider original.
+   - *no face detected* → placed from the body outline (neck = narrowest row); check it by eye.
+5. Uploading the finished PNGs to Match Board → Roster is the user's step (don't do it for them — that tab is
+   behind the dashboard password). The Roster tab's Crop button is the fallback for any photo that still needs
+   a nudge.
+
+**How it works / where things live** (`projects/redbull/tools/process_player_photos.py`): rembg with the
+`birefnet-portrait` model removes the background → OpenCV YuNet finds the largest face (box ≈ brow-to-chin; chin =
+box bottom, head top = topmost cut-out pixel above the face so hair/caps count) → scale = 360 px / (chin − head
+top), placed with `alpha_composite` (never paste-with-mask, which darkens soft edges). Template numbers are the
+`HEAD_TOP`/`CHIN`/`SIZE` constants at the top of the script.
+
+**Tools live outside the repo at `C:\Users\mineski-prod\.redbull-photo-tool\`** (`venv\` + `models\`), NOT in
+`%LOCALAPPDATA%` — this desktop app's sandbox silently redirects AppData writes into
+`...\Packages\Claude_...\LocalCache`, so an install there is invisible to the user's own shell and fragile. If
+that folder is missing (new machine, cleaned up), rebuild it:
+```
+python -m venv C:\Users\mineski-prod\.redbull-photo-tool\venv
+C:\Users\mineski-prod\.redbull-photo-tool\venv\Scripts\python.exe -m pip install "rembg[cpu]" opencv-python-headless pillow
+# YuNet face model (~230 KB) -> C:\Users\mineski-prod\.redbull-photo-tool\models\face_detection_yunet_2023mar.onnx
+#   https://github.com/opencv/opencv_zoo/raw/main/models/face_detection_yunet/face_detection_yunet_2023mar.onnx
+# BiRefNet-portrait (~970 MB) downloads itself on first run into models\birefnet-portrait\ (the script sets U2NET_HOME)
+```
 
 ## ENTVC.html — the EN broadcast mirror of Waiting TVC/Lobby
 

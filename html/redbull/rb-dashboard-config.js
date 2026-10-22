@@ -433,6 +433,16 @@
         "name": "Logo"
       },
       {
+        "group": "Player Photo (Left)",
+        "id": "#mi-photo-l",
+        "name": "Player Photo (Left)"
+      },
+      {
+        "group": "Player Photo (Right)",
+        "id": "#mi-photo-r",
+        "name": "Player Photo (Right)"
+      },
+      {
         "group": "Name Bar (Left)",
         "id": "#mi-bar-l",
         "name": "Name Bar (Left)"
@@ -465,22 +475,34 @@
         "width": 548,
         "height": 428
       },
+      "#mi-photo-l": {
+        "left": 474,
+        "top": 340,
+        "width": 336,
+        "height": 322
+      },
+      "#mi-photo-r": {
+        "left": 1112,
+        "top": 340,
+        "width": 336,
+        "height": 322
+      },
       "#mi-bar-l": {
         "left": 176,
-        "top": 500,
+        "top": 660,
         "width": 650,
         "height": 88
       },
       "#mi-vs": {
         "left": 826,
-        "top": 490,
+        "top": 650,
         "width": 268,
         "height": 108,
         "fontSize": 104
       },
       "#mi-bar-r": {
         "left": 1094,
-        "top": 500,
+        "top": 660,
         "width": 650,
         "height": 88
       },
@@ -509,6 +531,16 @@
         "group": "Logo",
         "id": "#mr-logo",
         "name": "Logo"
+      },
+      {
+        "group": "Player Photo (Left)",
+        "id": "#mr-photo-l",
+        "name": "Player Photo (Left)"
+      },
+      {
+        "group": "Player Photo (Right)",
+        "id": "#mr-photo-r",
+        "name": "Player Photo (Right)"
       },
       {
         "group": "Name Plate (Left)",
@@ -553,37 +585,49 @@
         "width": 548,
         "height": 428
       },
+      "#mr-photo-l": {
+        "left": 566,
+        "top": 380,
+        "width": 300,
+        "height": 290
+      },
+      "#mr-photo-r": {
+        "left": 1092,
+        "top": 380,
+        "width": 300,
+        "height": 290
+      },
       "#mr-name-l": {
         "left": 316,
-        "top": 486,
+        "top": 666,
         "width": 424,
         "height": 84,
         "fontSize": 52
       },
       "#mr-score": {
         "left": 740,
-        "top": 460,
+        "top": 640,
         "width": 440,
         "height": 130,
         "fontSize": 104
       },
       "#mr-name-r": {
         "left": 1180,
-        "top": 486,
+        "top": 666,
         "width": 424,
         "height": 84,
         "fontSize": 52
       },
       "#mr-chip-l": {
         "left": 544,
-        "top": 576,
+        "top": 756,
         "width": 150,
         "height": 40,
         "fontSize": 28
       },
       "#mr-chip-r": {
         "left": 1200,
-        "top": 576,
+        "top": 756,
         "width": 150,
         "height": 40,
         "fontSize": 28
@@ -1044,6 +1088,11 @@
     "defaultsKey": "sb_edit_defaults_rb_winner",
     "elements": [
       {
+        "group": "Player Photo",
+        "id": "#wn-photo",
+        "name": "Player Photo"
+      },
+      {
         "group": "Logo",
         "id": "#wn-logo",
         "name": "Logo"
@@ -1070,6 +1119,12 @@
       }
     ],
     "defaults": {
+      "#wn-photo": {
+        "left": 980,
+        "top": 150,
+        "width": 340,
+        "height": 336
+      },
       "#wn-logo": {
         "left": 500,
         "top": 420,
@@ -1868,6 +1923,16 @@
     "defaultsKey": "sb_edit_defaults_rb_vs_super",
     "elements": [
       {
+        "group": "Player Photo (Left)",
+        "id": "#sv-photo-l",
+        "name": "Player Photo (Left)"
+      },
+      {
+        "group": "Player Photo (Right)",
+        "id": "#sv-photo-r",
+        "name": "Player Photo (Right)"
+      },
+      {
         "group": "Country Plate (Left)",
         "id": "#sv-c1",
         "name": "Country Plate (Left)"
@@ -1904,6 +1969,18 @@
       }
     ],
     "defaults": {
+      "#sv-photo-l": {
+        "left": 490,
+        "top": 520,
+        "width": 336,
+        "height": 336
+      },
+      "#sv-photo-r": {
+        "left": 1080,
+        "top": 520,
+        "width": 336,
+        "height": 336
+      },
       "#sv-c1": {
         "left": 260,
         "top": 856,
