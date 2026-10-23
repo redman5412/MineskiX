@@ -244,6 +244,11 @@ A self-contained project built from `projects/redbull/assets/Wings-Cup-Broadcast
   In-Game frame; one at a time). Shared bits: `html/redbull/rb.css`, `rb-core.js`. Layout scenes (107a/b,
   PiP, 109) cut real transparent holes in the background (`.rb-feed` boxes → `clip-path: evenodd`) so the
   game source underneath shows through; in `?preview=1` the holes show a "GAME FEED" placeholder.
+- **Supers exit animation:** hiding a super (`takeOff()` in `redbull-supers.html`) plays its entrance backwards —
+  `.rb-leaving` in `rb.css` with `--dout` = (latest entrance `--d` − own `--d`), so the last element in is the first
+  out (~1.1 s, ease-in, so the first ~¼ s barely moves — accepted). Default for every super; one with no
+  `.rb-pop`/`.rb-slide-*` elements (Player In-Game frame) falls back to the 400 ms fade. To revert ONE super to the
+  fade, add `animOut: false` to its `SUPERS` entry. Full-screen scenes (`redbull-fullscreen.html`) still just fade.
 - **Control:** routes `/overlay/rb_<name>/show|hide` (+ `/overlay/rb/hide` for hide-all) in `routes/redbull.js`
   broadcast one SSE event, `redbull`, `{action,key,kind,live}`. Both pages ignore it under `?preview=1`
   and expose `previewTrigger(key, action)` + `rbEdit_<name>()` for the Edit tab. `window.RB_MODE` /

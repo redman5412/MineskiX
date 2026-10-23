@@ -59,6 +59,14 @@ body { font-family: 'RB Bull Cond', 'Arial Narrow', sans-serif; font-weight: 700
 @keyframes rbRise   { from { opacity: 0; transform: translateY(26px); } to { opacity: 1; transform: none; } }
 @keyframes rbSlideL { from { opacity: 0; transform: translateX(-70px); } to { opacity: 1; transform: none; } }
 @keyframes rbSlideR { from { opacity: 0; transform: translateX(70px); } to { opacity: 1; transform: none; } }
+/* Exit = the entrance played backwards: same distance/duration, ease-in, and reversed stagger (--dout is set by
+   the page's hide code to maxDelay - --d, so the last thing in is the first thing out). Used by every super unless its SUPERS entry has animOut: false. */
+.rb-leaving .rb-pop     { animation: rbRiseOut   .6s var(--dout, 0s) cubic-bezier(.8,0,.8,.2) both; }
+.rb-leaving .rb-slide-l { animation: rbSlideLOut .6s var(--dout, 0s) cubic-bezier(.8,0,.8,.2) both; }
+.rb-leaving .rb-slide-r { animation: rbSlideROut .6s var(--dout, 0s) cubic-bezier(.8,0,.8,.2) both; }
+@keyframes rbRiseOut   { from { opacity: 1; transform: none; } to { opacity: 0; transform: translateY(26px); } }
+@keyframes rbSlideLOut { from { opacity: 1; transform: none; } to { opacity: 0; transform: translateX(-70px); } }
+@keyframes rbSlideROut { from { opacity: 1; transform: none; } to { opacity: 0; transform: translateX(70px); } }
 
 /* ── Text ── */
 .rb-name .fn { font-weight: 400; opacity: .88; }   /* Bull Condensed Regular first names */

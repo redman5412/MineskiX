@@ -201,20 +201,40 @@
     ]);
   }
 
+  /* Take a super off air. By default a super plays its entrance backwards (rb.css .rb-leaving): each animated
+     element gets --dout = (latest entrance delay - its own delay), so the last element in is the first out;
+     the page itself only goes display:none once the slowest one has finished. A super with no entrance
+     animations (Player In-Game frame) just fades (HIDE_MS) — so does any super given animOut: false in SUPERS,
+     which is the switch to revert one graphic to the old fade. */
+  var ANIM_S = 0.6;   // entrance/exit duration per element, matches rb.css
+  function takeOff(key) {
+    var pageEl = $(SUPERS[key].page);
+    var done = function () { if (active !== key) pageEl.classList.remove('rb-on', 'rb-visible', 'rb-leaving'); };
+    var els = [].slice.call(pageEl.querySelectorAll('.rb-pop, .rb-slide-l, .rb-slide-r'));
+    if (SUPERS[key].animOut === false || !els.length) {
+      pageEl.classList.remove('rb-visible', 'rb-active');
+      setTimeout(done, HIDE_MS);
+      return;
+    }
+    var delays = els.map(function (el) { return parseFloat(getComputedStyle(el).getPropertyValue('--d')) || 0; });
+    var maxD = Math.max.apply(null, delays.concat(0));
+    els.forEach(function (el, i) { el.style.setProperty('--dout', (maxD - delays[i]) + 's'); });
+    pageEl.classList.remove('rb-active');
+    pageEl.classList.add('rb-leaving');
+    setTimeout(done, (maxD + ANIM_S) * 1000 + 50);
+  }
+
   async function showSuper(key) {
     var sc = SUPERS[key]; if (!sc) return;
     if (!RB.state) await RB.refresh();
     var pageEl = $(sc.page);
     if (active === key) { sc.apply(RB.state); RB.fitAll(pageEl); return; }
     var prev = active; active = key;
-    if (prev && SUPERS[prev]) {
-      var po = $(SUPERS[prev].page);
-      po.classList.remove('rb-visible', 'rb-active');
-      setTimeout(function () { if (active !== prev) po.classList.remove('rb-on'); }, HIDE_MS);
-    }
+    if (prev && SUPERS[prev]) takeOff(prev);
     sc.apply(RB.state);
     await preload(pageEl, 1500);
     if (active !== key) return;
+    pageEl.classList.remove('rb-leaving');   // re-shown mid-exit: replay the entrance from scratch
     pageEl.classList.add('rb-on');
     void pageEl.offsetWidth;
     RB.fitAll(pageEl);
@@ -223,10 +243,9 @@
   }
   function hideSuper(key) {
     if (!active || (key && key !== active)) return;
-    var pageEl = $(SUPERS[active].page);
+    var prev = active;
     active = null;
-    pageEl.classList.remove('rb-visible', 'rb-active');
-    setTimeout(function () { if (active === null) pageEl.classList.remove('rb-on'); }, HIDE_MS);
+    takeOff(prev);
   }
 
   window.previewTrigger = function (event, action) {
